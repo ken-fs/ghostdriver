@@ -77,6 +77,39 @@ export default function TierList() {
           </p>
         </HudPanel>
       )}
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How we&apos;ll rank cars
+        </Marquee>
+        <p className="mt-3 text-dim">
+          Ghost Driver is a No Hesi-style game: you score by weaving through dense
+          highway traffic at speed. That means a car&apos;s value comes down to three
+          things, which is exactly what our tiers will weigh once stats are confirmed:
+        </p>
+        <ul className="mt-4 space-y-3 text-dim">
+          <li>
+            <span className="glow-sodium">Top speed</span> — higher speed means bigger
+            near-miss multipliers and more Cash per run. This is the headline stat in a
+            traffic game.
+          </li>
+          <li>
+            <span className="glow-hud">Handling &amp; braking</span> — raw speed is
+            useless if you can&apos;t thread gaps. Cars that turn and slow sharply let
+            you commit to tighter lines without crashing.
+          </li>
+          <li>
+            <span className="glow-active">Value for Cash</span> — a mid-price car that
+            performs near the top tier is often the smarter buy than the most expensive
+            one, especially early.
+          </li>
+        </ul>
+        <p className="mt-4 text-dim">
+          When the in-game numbers are verified, each car gets an S–C grade based on
+          this — never on guesswork. Learn how to afford your next upgrade in the{" "}
+          <Link href="/cash/">cash guide</Link>.
+        </p>
+      </HudPanel>
     </div>
   );
 }

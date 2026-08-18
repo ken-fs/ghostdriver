@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { SITE, NAV } from "@/lib/site";
+import { SITE, NAV, LEGAL_NAV } from "@/lib/site";
 
 /** Dashboard panel — 2px lane border, no soft rounded SaaS cards. */
 export function HudPanel({
@@ -70,7 +70,16 @@ export function SiteFooter() {
           stats are player-verified — items we cannot confirm are marked
           &ldquo;check in-game.&rdquo;
         </p>
-        <p className="mt-3 text-sm">© {SITE.domain}</p>
+        <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {LEGAL_NAV.map((n) => (
+            <li key={n.href}>
+              <Link href={n.href} className="text-dim hover:text-hud">
+                {n.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-sm">© {new Date().getFullYear()} {SITE.domain}</p>
       </div>
     </footer>
   );

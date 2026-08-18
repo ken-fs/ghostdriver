@@ -56,6 +56,68 @@ export default function CashGuide() {
         ))}
       </div>
 
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          What to spend Cash on first
+        </Marquee>
+        <ol className="mt-4 space-y-2 text-dim">
+          <li className="flex gap-3">
+            <span className="display glow-taillight">01</span>
+            <span>
+              Your <span className="text-fg">first car upgrade</span>. Getting off the
+              slow starter is the single biggest jump in earning rate — everything else
+              can wait.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="display glow-taillight">02</span>
+            <span>
+              <span className="text-fg">Tuning</span> on the car you actually drive.
+              Upgrading one good car beats half-upgrading three.
+            </span>
+          </li>
+          <li className="flex gap-3">
+            <span className="display glow-taillight">03</span>
+            <span>
+              Saving toward the <span className="text-fg">next tier of car</span> once
+              your current one is maxed. Cosmetics last — performance first.
+            </span>
+          </li>
+        </ol>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Cash FAQ
+        </Marquee>
+        <dl className="mt-4 space-y-4 text-dim">
+          <div>
+            <dt className="font-semibold text-fg">
+              What is the fastest way to get Cash in Ghost Driver?
+            </dt>
+            <dd className="mt-1">
+              High-speed near-misses in heavy traffic. Redeeming the current{" "}
+              <Link href="/codes/">codes</Link> also grants instant Cash for a fast
+              head start.
+            </dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-fg">Do codes give Cash?</dt>
+            <dd className="mt-1">
+              Yes — every current Ghost Driver code rewards Cash, which is why redeeming
+              them early is the quickest boost.
+            </dd>
+          </div>
+          <div>
+            <dt className="font-semibold text-fg">Is there a Cash limit?</dt>
+            <dd className="mt-1">
+              None that players have reported. Keep driving and your balance keeps
+              climbing — the only cap is how long you can weave without crashing.
+            </dd>
+          </div>
+        </dl>
+      </HudPanel>
+
       <p className="text-sm text-dim">
         Not sure which car to save for? Check the <Link href="/tier-list/">tier list</Link>.
       </p>

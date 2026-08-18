@@ -65,6 +65,91 @@ export default function CarsPage() {
               <Link href="/cash/">cash guide</Link> to afford them.
             </p>
           )}
+
+          <HudPanel>
+            <Marquee color="hud" as="h2" className="text-xl">
+              About the cars
+            </Marquee>
+            <p className="mt-3 text-dim">
+              {SITE.game} models its dealership on real high-performance road cars.
+              Here is what each confirmed vehicle is known for in the real world — a
+              rough guide to how it tends to feel in a traffic-weaving game, where top
+              speed builds your score but sharp handling keeps you alive between cars.
+            </p>
+            <dl className="mt-4 space-y-4">
+              <div>
+                <dt className="font-semibold text-fg">
+                  Ferrari 812 Superfast{" "}
+                  <span className="text-xs glow-taillight">Limited</span>
+                </dt>
+                <dd className="mt-1 text-dim">
+                  A front-mid V12 grand tourer built for huge straight-line speed — the
+                  aspirational, hard-to-get pick. The widebody &ldquo;N-Largo&rdquo;
+                  variant is a rare tuner edition, which fits its status as a limited car
+                  here.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">Porsche 911 GT3 RS</dt>
+                <dd className="mt-1 text-dim">
+                  A track-focused, high-downforce sports car famous for precision and
+                  cornering — the kind of car that rewards weaving through tight gaps
+                  rather than pure top-end.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">BMW M3 (G80)</dt>
+                <dd className="mt-1 text-dim">
+                  A balanced performance sedan and a popular tuning base — well-rounded
+                  speed and control, and a common favorite for players who like to modify
+                  their build.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">Audi RS7</dt>
+                <dd className="mt-1 text-dim">
+                  A big, powerful all-wheel-drive fastback — stable and quick, leaning
+                  toward planted high-speed cruising over razor-sharp agility.
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-4 text-xs text-dim">
+              Descriptions reflect the real-world cars for context only. In-game prices,
+              top speeds and tuning figures are not shown until verified.
+            </p>
+          </HudPanel>
+
+          <HudPanel>
+            <Marquee color="hud" as="h2" className="text-xl">
+              Cars FAQ
+            </Marquee>
+            <dl className="mt-4 space-y-4 text-dim">
+              <div>
+                <dt className="font-semibold text-fg">How do you get cars in Ghost Driver?</dt>
+                <dd className="mt-1">
+                  You buy them at the in-game dealership with Cash earned by driving
+                  through traffic. Redeeming <Link href="/codes/">codes</Link> gives you
+                  Cash to speed that up.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">What is the best car?</dt>
+                <dd className="mt-1">
+                  Once in-game top speeds are verified we&apos;ll rank them on the{" "}
+                  <Link href="/tier-list/">tier list</Link>. In a No Hesi-style game the
+                  best all-rounders balance high top speed with handling sharp enough to
+                  thread heavy traffic.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">Can you tune cars?</dt>
+                <dd className="mt-1">
+                  Yes — the game has received tuning and customization updates, so cars
+                  can be upgraded beyond their stock stats.
+                </dd>
+              </div>
+            </dl>
+          </HudPanel>
         </>
       ) : (
         <HudPanel>
