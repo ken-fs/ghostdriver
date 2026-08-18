@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="104" fill="#0a0b0d"/>
+  <rect x="10" y="10" width="492" height="492" rx="96" fill="none" stroke="#2a2e35" stroke-width="14"/>
+  <!-- speed streaks -->
+  <g stroke="#4be3ff" stroke-width="26" stroke-linecap="round" opacity="0.9">
+    <line x1="70" y1="196" x2="176" y2="196"/>
+    <line x1="52" y1="262" x2="176" y2="262"/>
+    <line x1="70" y1="328" x2="176" y2="328"/>
+  </g>
+  <!-- G monogram -->
+  <text x="212" y="366" font-family="Arial, Helvetica, sans-serif" font-size="330" font-weight="800" fill="#ffb03a">G</text>
+</svg>

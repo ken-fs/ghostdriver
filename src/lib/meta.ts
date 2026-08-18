@@ -24,11 +24,13 @@ export function buildMeta({
       url: path,
       title,
       description,
+      images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE.name }],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: ["/og.png"],
     },
   };
 }
