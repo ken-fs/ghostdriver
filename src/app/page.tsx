@@ -56,6 +56,42 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="lane-divider" />
+
+      <section className="grid gap-4 md:grid-cols-2">
+        <HudPanel>
+          <Marquee color="sodium" as="h2" className="text-xl">
+            What is Ghost Driver?
+          </Marquee>
+          <p className="mt-3 text-dim">
+            Ghost Driver is a No Hesi-style Roblox driving game: you cut through heavy
+            highway traffic at high speed, scoring on near-misses to earn Cash, then
+            spend it at the dealership on faster cars. It&apos;s in pre-alpha but already
+            one of Roblox&apos;s busiest driving games, with new cars and codes arriving
+            in frequent updates.
+          </p>
+          <p className="mt-3 text-dim">
+            This hub is where you grab what you need between runs — the current codes,
+            which cars are worth buying, and how to bank Cash fast — without digging
+            through outdated articles.
+          </p>
+        </HudPanel>
+        <HudPanel>
+          <Marquee color="active" as="h2" className="text-xl">
+            Why trust us
+          </Marquee>
+          <p className="mt-3 text-dim">
+            Everything here is player-verified. Codes are cross-checked before we list
+            them and stamped with the date we last confirmed them. Game stats come
+            straight from Roblox and refresh automatically. When we can&apos;t verify a
+            number, we say &ldquo;check in-game&rdquo; instead of making it up.
+          </p>
+          <p className="mt-3 text-dim">
+            <Link href="/about/">More about how we verify →</Link>
+          </p>
+        </HudPanel>
+      </section>
+
       <p className="text-sm text-dim">
         Looking for something specific?{" "}
         {NAV.map((n, i) => (

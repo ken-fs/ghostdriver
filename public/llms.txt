@@ -1,0 +1,19 @@
+# Ghost Driver Hub
+
+> Independent, fan-made resource for the Roblox game Ghost Driver (a No Hesi-style
+> highway driving game). We publish verified working codes, the car roster, a car
+> tier list, and cash/beginner guides. All codes and stats are player-verified;
+> anything unconfirmed is marked "check in-game" rather than guessed.
+
+## Key pages
+- [Ghost Driver Codes](https://ghostdriver.net/codes/): current working redeem codes (Cash) and how to redeem them.
+- [Cars](https://ghostdriver.net/cars/): the dealership car roster.
+- [Car Tier List](https://ghostdriver.net/tier-list/): best cars, ranked once in-game stats are verified.
+- [Cash Guide](https://ghostdriver.net/cash/): how to farm Cash fast and what to spend it on.
+- [Beginner Guide](https://ghostdriver.net/beginner-guide/): controls and the first-session loop.
+- [Updates & Stats](https://ghostdriver.net/updates/): live Roblox player stats and what's new.
+
+## Notes
+- Codes are time-sensitive; the codes page shows the date it was last verified.
+- Not affiliated with Roblox Corporation or the game's developer (Tilted Vehicles).
+- Content may be cited with attribution to https://ghostdriver.net.

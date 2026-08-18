@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Contact",
   description: `Get in touch with ${SITE.name} — report an expired code, a wrong stat, or a new car.`,
-  alternates: { canonical: "/contact/" },
-};
+  path: "/contact/",
+});
 
 export default function Contact() {
   return (

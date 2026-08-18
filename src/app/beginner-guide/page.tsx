@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
 import { GAME, GAMEPLAY_LOOP } from "@/data/game";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Beginner Guide",
   description: `New to ${SITE.game}? Learn the controls, the first-session loop, and how to earn your first upgrade fast.`,
-  alternates: { canonical: "/beginner-guide/" },
-};
+  path: "/beginner-guide/",
+});
 
 export default function BeginnerGuide() {
   return (
@@ -60,6 +60,32 @@ export default function BeginnerGuide() {
           you can skip straight to your first dealership upgrade. Then read the{" "}
           <Link href="/cash/">cash farming guide</Link> to keep the money flowing.
         </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="taillight" as="h2" className="text-xl">
+          Common Beginner Mistakes
+        </Marquee>
+        <ul className="mt-4 space-y-2 text-dim">
+          <li>
+            • <span className="text-fg">Braking too early.</span> Lifting off at every
+            car kills your speed multiplier. Commit to gaps and use Shift to drift, not
+            the brake.
+          </li>
+          <li>
+            • <span className="text-fg">Driving empty lanes.</span> No traffic means no
+            near-misses and almost no Cash. Stay where the cars are.
+          </li>
+          <li>
+            • <span className="text-fg">Hoarding Cash.</span> Sitting on money slows you
+            down — buy your first upgrade as soon as you can afford it.
+          </li>
+          <li>
+            • <span className="text-fg">Skipping the codes.</span> Free Cash from{" "}
+            <Link href="/codes/">codes</Link> is the fastest early boost; redeem them
+            before you grind.
+          </li>
+        </ul>
       </HudPanel>
     </div>
   );

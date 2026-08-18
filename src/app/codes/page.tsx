@@ -1,19 +1,19 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { CopyButton } from "@/components/CopyButton";
 import { CODES, CODES_LAST_CHECKED, REDEEM_STEPS } from "@/data/codes";
 import { SITE } from "@/lib/site";
+import { buildMeta } from "@/lib/meta";
 
 const active = CODES.filter((c) => c.status === "active");
 const unconfirmed = CODES.filter((c) => c.status === "unconfirmed");
 const expired = CODES.filter((c) => c.status === "expired");
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Codes",
   description: `All working ${SITE.game} codes, checked ${CODES_LAST_CHECKED}. Redeem them for free Cash and skip the early grind.`,
-  alternates: { canonical: "/codes/" },
-};
+  path: "/codes/",
+});
 
 const faq = [
   {
@@ -43,11 +43,28 @@ export default function CodesPage() {
     })),
   };
 
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Working ${SITE.game} Codes`,
+    numberOfItems: active.length,
+    itemListElement: active.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.code,
+      description: c.reward,
+    })),
+  };
+
   return (
     <div className="space-y-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
       />
 
       <header>
@@ -145,6 +162,57 @@ export default function CodesPage() {
             </div>
           ))}
         </dl>
+      </HudPanel>
+
+      {/* Troubleshooting */}
+      <HudPanel>
+        <Marquee color="taillight" as="h2" className="text-xl">
+          Code Not Working?
+        </Marquee>
+        <p className="mt-3 text-dim">
+          If a {SITE.game} code is rejected, it&apos;s almost always one of these:
+        </p>
+        <ul className="mt-4 space-y-2 text-dim">
+          <li>
+            • <span className="text-fg">Typos or case.</span> Codes are
+            case-sensitive. Use the copy button above instead of typing by hand.
+          </li>
+          <li>
+            • <span className="text-fg">It expired.</span> Ghost Driver codes are
+            short-lived — usually a few days. If it&apos;s past that, it&apos;s gone.
+          </li>
+          <li>
+            • <span className="text-fg">Already redeemed.</span> Each code works once
+            per account.
+          </li>
+          <li>
+            • <span className="text-fg">Menu glitch.</span> Rejoin the server, reopen
+            the Shop, and try again — the code box occasionally needs a refresh.
+          </li>
+        </ul>
+      </HudPanel>
+
+      {/* How to get more */}
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How to Get More Codes
+        </Marquee>
+        <p className="mt-3 text-dim">
+          The {SITE.developer} developer group drops new {SITE.game} codes around
+          milestones — the current codes celebrated a 1-million milestone, and the game
+          is still in pre-alpha with frequent updates. New codes tend to appear when:
+        </p>
+        <ul className="mt-4 space-y-2 text-dim">
+          <li>• The game hits a visit or like milestone.</li>
+          <li>• A major update or new car drops.</li>
+          <li>• Special events or collaborations go live.</li>
+        </ul>
+        <p className="mt-4 text-dim">
+          We re-check and update this page as new codes appear — bookmark it and check
+          before each session. The{" "}
+          <Link href="/updates/">updates page</Link> tracks the game&apos;s milestones so
+          you can see a drop coming.
+        </p>
       </HudPanel>
 
       <p className="text-sm text-dim">

@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import { HudPanel, Marquee } from "@/components/ui";
+import { buildMeta } from "@/lib/meta";
 import { GAME } from "@/data/game";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "About",
   description: `About ${SITE.name} — an independent, fan-made resource for the Roblox game ${SITE.game}.`,
-  alternates: { canonical: "/about/" },
-};
+  path: "/about/",
+});
 
 export default function About() {
   return (
@@ -30,6 +30,33 @@ export default function About() {
           sources. When something can&apos;t be confirmed, we say so and mark it
           &ldquo;check in-game&rdquo; rather than guess. Time-sensitive facts show the
           date we last checked them.
+        </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How we keep this accurate
+        </Marquee>
+        <ul className="mt-4 space-y-2 text-dim">
+          <li>
+            • <span className="text-fg">Codes</span> are cross-checked against multiple
+            sources and only listed as working when they agree; conflicting ones are
+            flagged &ldquo;might still work.&rdquo; Each check is dated.
+          </li>
+          <li>
+            • <span className="text-fg">Game stats</span> (visits, players, likes) are
+            pulled directly from Roblox&apos;s public data and refreshed automatically,
+            so the numbers you see are current.
+          </li>
+          <li>
+            • <span className="text-fg">Cars &amp; stats</span> are only published once
+            confirmed in-game. If we can&apos;t verify a price or top speed, we say
+            &ldquo;check in-game&rdquo; instead of guessing.
+          </li>
+        </ul>
+        <p className="mt-4 text-dim">
+          {SITE.name} is maintained by {SITE.game} players. Spotted something wrong?{" "}
+          <a href={`mailto:${SITE.contactEmail}`}>Tell us</a> and we&apos;ll fix it.
         </p>
       </HudPanel>
 

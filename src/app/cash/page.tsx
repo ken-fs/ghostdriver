@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Cash Guide — How to Get Cash Fast",
   description: `How to farm Cash fast in Roblox ${SITE.game}: near-miss driving, code boosts, and what to spend it on first.`,
-  alternates: { canonical: "/cash/" },
-};
+  path: "/cash/",
+});
 
 const TIPS = [
   {

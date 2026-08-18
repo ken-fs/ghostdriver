@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { CARS, CARS_LAST_CHECKED } from "@/data/cars";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Car Tier List — Best Cars",
-  description: `The best cars in Roblox ${SITE.game} ranked S to C by value and speed, updated as the roster is confirmed.`,
-  alternates: { canonical: "/tier-list/" },
-};
+  description: `How the best cars in Roblox ${SITE.game} compare, and how we rank them S–C once in-game top speeds are verified.`,
+  path: "/tier-list/",
+});
 
 const TIERS: { tier: "S" | "A" | "B" | "C"; color: string; label: string }[] = [
   { tier: "S", color: "glow-sodium", label: "Best in game" },

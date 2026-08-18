@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
 import { SITE } from "@/lib/site";
 import { GAME } from "@/data/game";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Terms of Use",
   description: `The terms for using ${SITE.name}, a fan-made ${SITE.game} resource.`,
-  alternates: { canonical: "/terms/" },
-};
+  path: "/terms/",
+});
 
 export default function Terms() {
   return (

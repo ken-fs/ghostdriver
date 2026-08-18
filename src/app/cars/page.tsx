@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { CARS, CARS_KNOWN, CARS_LAST_CHECKED, CARS_ROSTER_PARTIAL } from "@/data/cars";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Cars List",
   description: `Every car in Roblox ${SITE.game} with price and top speed. We document the full dealership roster as it is confirmed in-game.`,
-  alternates: { canonical: "/cars/" },
-};
+  path: "/cars/",
+});
 
 export default function CarsPage() {
   return (

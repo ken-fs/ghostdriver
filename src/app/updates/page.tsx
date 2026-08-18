@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { GAME } from "@/data/game";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = buildMeta({
   title: "Ghost Driver Updates & Stats",
   description: `Live ${SITE.game} player stats and the latest news — visits, concurrent players, likes, and new code milestones.`,
-  alternates: { canonical: "/updates/" },
-};
+  path: "/updates/",
+});
 
 const nf = new Intl.NumberFormat("en-US");
 const approval = Math.round(

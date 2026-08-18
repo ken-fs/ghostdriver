@@ -50,17 +50,37 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Organization",
+        "@id": `${SITE.url}/#organization`,
+        name: SITE.name,
+        url: SITE.url,
+        description: `Independent fan resource for the Roblox game ${SITE.game}: working codes, car data, and guides.`,
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          url: `${SITE.url}/contact/`,
+        },
+      },
+      {
         "@type": "WebSite",
         "@id": `${SITE.url}/#website`,
         name: SITE.name,
         url: SITE.url,
         inLanguage: "en",
+        publisher: { "@id": `${SITE.url}/#organization` },
       },
       {
         "@type": "VideoGame",
+        "@id": `${SITE.url}/#videogame`,
         name: SITE.game,
+        url: SITE.robloxUrl,
+        description:
+          "A No Hesi-style Roblox driving game: weave through heavy highway traffic at high speed, earn Cash, and buy faster cars.",
         gamePlatform: "Roblox",
         applicationCategory: "Game",
+        genre: ["Racing", "Driving"],
+        playMode: "MultiPlayer",
+        author: { "@type": "Organization", name: SITE.developer },
       },
     ],
   };
