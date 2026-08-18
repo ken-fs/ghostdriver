@@ -1,19 +1,20 @@
-name: Update stats & deploy
+name: Refresh stats
+
+# Deployment is handled by Cloudflare's Git integration (Workers Builds) on push.
+# This workflow only refreshes live Roblox traction and commits it — the commit's
+# push then triggers Cloudflare to rebuild & redeploy automatically.
 
 on:
   schedule:
     - cron: "0 */6 * * *" # every 6 hours (UTC)
   workflow_dispatch: {} # manual "Run workflow" button
-  push:
-    branches: [main]
 
-# Avoid overlapping runs racing on the stats commit.
 concurrency:
-  group: deploy
+  group: refresh-stats
   cancel-in-progress: false
 
 jobs:
-  build-deploy:
+  refresh:
     runs-on: ubuntu-latest
     permissions:
       contents: write # allow committing refreshed stats.json
@@ -43,13 +44,3 @@ jobs:
           else
             echo "No stats change."
           fi
-
-      - name: Build (static export -> ./out)
-        run: npm run build
-
-      - name: Deploy to Cloudflare
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
