@@ -1,0 +1,55 @@
+name: Update stats & deploy
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # every 6 hours (UTC)
+  workflow_dispatch: {} # manual "Run workflow" button
+  push:
+    branches: [main]
+
+# Avoid overlapping runs racing on the stats commit.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # allow committing refreshed stats.json
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Pull live traction from Roblox and write src/data/stats.json.
+      # Bails without writing if the API is malformed, so a bad run is a no-op.
+      - name: Refresh stats
+        run: node scripts/refresh-stats.mjs
+
+      - name: Commit refreshed stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- src/data/stats.json; then
+            git add src/data/stats.json
+            git commit -m "chore: refresh Ghost Driver stats"
+            git push
+          else
+            echo "No stats change."
+          fi
+
+      - name: Build (static export -> ./out)
+        run: npm run build
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

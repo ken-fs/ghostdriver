@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/*
+  Ghost Driver — "Night Highway HUD" theme.
+  Anti-SaaS (see Ship/DESIGN-RULES.md): no indigo/violet, no flat fills, no centered
+  hero+3-cards. The site reads like a night-drive dashboard: asphalt-black ground,
+  lane-marking borders, sodium-amber highway light, taillight red, HUD cyan.
+*/
+
+@theme {
+  --color-asphalt: #0a0b0d;      /* road ground — near-black neutral, not blue */
+  --color-asphalt-2: #14161a;    /* raised panels / dashboard */
+  --color-bezel: #030405;        /* darkest edge */
+  --color-lane: #2a2e35;         /* 2px borders = painted lane markings, never 1px */
+  --color-fg: #f2f4f7;           /* headlight white */
+  --color-dim: #868d99;          /* dimmed dash text (secondary) */
+
+  --color-hud: #4be3ff;          /* speedometer / HUD cyan — nav, links */
+  --color-taillight: #ff3b47;    /* taillight red — expired, danger, hot accent */
+  --color-sodium: #ffb03a;       /* sodium highway lamp — title, headings, S-tier */
+  --color-active: #3ef2a0;       /* "green light" — live codes, active, B-tier */
+
+  --font-display: var(--font-chakra), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-asphalt);
+  /* Asphalt grain + faint lane-glow, NOT a smooth SaaS radial gradient. */
+  background-image:
+    radial-gradient(circle at 50% -10%, rgba(75, 227, 255, 0.06), transparent 45%),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 3px,
+      rgba(255, 255, 255, 0.012) 3px 4px
+    );
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+a {
+  color: var(--color-hud);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Phosphor-style glow helpers */
+.glow-hud { color: var(--color-hud); text-shadow: 0 0 10px rgba(75, 227, 255, 0.5); }
+.glow-sodium { color: var(--color-sodium); text-shadow: 0 0 12px rgba(255, 176, 58, 0.45); }
+.glow-active { color: var(--color-active); text-shadow: 0 0 10px rgba(62, 242, 160, 0.5); }
+.glow-taillight { color: var(--color-taillight); text-shadow: 0 0 10px rgba(255, 59, 71, 0.5); }
+
+/* Dashboard panel — 2px lane border, no rounded soft cards */
+.hud-panel {
+  background-color: var(--color-asphalt-2);
+  border: 2px solid var(--color-lane);
+  border-radius: 4px;
+}
+
+/* Dashed lane divider */
+.lane-divider {
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--color-sodium) 0 18px,
+    transparent 18px 34px
+  );
+  opacity: 0.35;
+}
+
+/* "LIVE" pulse for working codes */
+@keyframes hud-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.pulse { animation: hud-pulse 1.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse { animation: none; }
+  html { scroll-behavior: auto; }
+}

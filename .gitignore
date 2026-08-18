@@ -1,0 +1,24 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production / cloudflare
+/.wrangler/
+
+# misc
+.DS_Store
+*.pem
+.env*
+!.env.example
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

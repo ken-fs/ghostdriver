@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ghostdriver",
+  "compatibility_date": "2026-08-01",
+  // Static site: Next.js `output: export` emits ./out, served directly as assets.
+  "assets": {
+    "directory": "./out",
+    // Pretty URLs: /codes/ -> out/codes/index.html; unknown paths -> 404.html
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
