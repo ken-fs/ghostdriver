@@ -1,6 +1,36 @@
 import Link from "next/link";
-import { HudPanel, Marquee } from "@/components/ui";
+import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
+import { CopyButton } from "@/components/CopyButton";
 import { SITE, NAV } from "@/lib/site";
+import { CODES, CODES_LAST_CHECKED } from "@/data/codes";
+import { GAME } from "@/data/game";
+
+const activeCodes = CODES.filter((c) => c.status === "active");
+const nf = new Intl.NumberFormat("en-US");
+const approval =
+  Math.round(
+    (GAME.traction.likes / (GAME.traction.likes + GAME.traction.dislikes)) * 1000,
+  ) / 10;
+const HOME_STATS = [
+  { label: "Visits", value: nf.format(GAME.traction.visits) },
+  { label: "Playing Now", value: nf.format(GAME.traction.ccu) },
+  { label: "Approval", value: `${approval}%` },
+];
+
+const HOME_FAQ = [
+  {
+    q: "Are Ghost Driver codes free?",
+    a: "Yes. Every Ghost Driver code is free and issued by the developer. Each one gives in-game Cash you redeem in the Shop menu — no Robux required.",
+  },
+  {
+    q: "How often do new codes come out?",
+    a: "New codes usually drop around milestones (like visit or like targets) and major updates. The game is in active pre-alpha, so check the codes page before each session.",
+  },
+  {
+    q: "What is the best car in Ghost Driver?",
+    a: "The dealership tops out at supercars like the Ferrari 812 Superfast. Once in-game top speeds are verified we rank every car S–C on the tier list — we won't guess before then.",
+  },
+];
 
 const HUBS = [
   { href: "/codes/", title: "Codes", blurb: "Every working redeem code, checked and dated." },
@@ -37,6 +67,52 @@ export default function Home() {
             → Best Cars
           </Link>
         </div>
+      </section>
+
+      <div className="lane-divider" />
+
+      {/* Working codes teaser — the top reason people land here */}
+      <section className="grid gap-4 md:grid-cols-3">
+        <HudPanel className="md:col-span-2">
+          <div className="flex items-center justify-between gap-3">
+            <Marquee color="active" as="h2" className="text-xl">
+              <span className="pulse">●</span> Working Codes
+            </Marquee>
+            <Link href="/codes/" className="text-sm">
+              All codes →
+            </Link>
+          </div>
+          <ul className="mt-4 divide-y divide-lane">
+            {activeCodes.map((c) => (
+              <li key={c.code} className="flex items-center justify-between gap-3 py-3">
+                <div>
+                  <code className="glow-active text-lg font-bold">{c.code}</code>
+                  <span className="ml-3 text-sm text-dim">{c.reward}</span>
+                </div>
+                <CopyButton value={c.code} />
+              </li>
+            ))}
+          </ul>
+          <div className="mt-3">
+            <VerifiedStamp date={CODES_LAST_CHECKED} />
+          </div>
+        </HudPanel>
+        <HudPanel>
+          <Marquee color="hud" as="h2" className="text-xl">
+            Live Game Stats
+          </Marquee>
+          <dl className="mt-4 space-y-3">
+            {HOME_STATS.map((s) => (
+              <div key={s.label} className="flex items-baseline justify-between">
+                <dt className="text-sm text-dim">{s.label}</dt>
+                <dd className="display text-xl glow-sodium">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-3 text-xs text-dim">
+            Live from Roblox · {GAME.tractionAsOf}
+          </p>
+        </HudPanel>
       </section>
 
       <div className="lane-divider" />
@@ -90,6 +166,22 @@ export default function Home() {
             <Link href="/about/">More about how we verify →</Link>
           </p>
         </HudPanel>
+      </section>
+
+      <div className="lane-divider" />
+
+      <section>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Ghost Driver FAQ
+        </Marquee>
+        <dl className="mt-4 space-y-4">
+          {HOME_FAQ.map((f) => (
+            <div key={f.q}>
+              <dt className="font-semibold text-fg">{f.q}</dt>
+              <dd className="mt-1 text-dim">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <p className="text-sm text-dim">
