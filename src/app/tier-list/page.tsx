@@ -11,10 +11,10 @@ export const metadata = buildMeta({
 });
 
 const TIERS: { tier: "S" | "A" | "B" | "C"; color: string; label: string }[] = [
-  { tier: "S", color: "glow-sodium", label: "Best in game" },
-  { tier: "A", color: "glow-hud", label: "Strong" },
-  { tier: "B", color: "glow-active", label: "Solid value" },
-  { tier: "C", color: "text-dim", label: "Starter / skip" },
+  { tier: "S", color: "glow-sodium", label: "Top value — buy first" },
+  { tier: "A", color: "glow-hud", label: "Strong buy" },
+  { tier: "B", color: "glow-active", label: "Pricey — lower value" },
+  { tier: "C", color: "text-dim", label: "Skip / starter" },
 ];
 
 export default function TierList() {
@@ -27,8 +27,10 @@ export default function TierList() {
           Car Tier List
         </Marquee>
         <p className="mt-3 text-dim">
-          Which {SITE.game} cars are actually worth your Cash, ranked by speed and
-          value for money.
+          Which {SITE.game} cars are actually worth your Cash, ranked by value for money
+          from verified in-game prices and top-creator consensus. Stock top speeds
+          aren&apos;t published yet, so this is a value ranking — we&apos;ll re-grade on
+          pure speed once those are confirmed.
         </p>
         <div className="mt-3">
           <VerifiedStamp date={CARS_LAST_CHECKED} />
@@ -45,7 +47,19 @@ export default function TierList() {
                 <div className={`display text-4xl ${t.color}`}>{t.tier}</div>
                 <div>
                   <p className="text-xs uppercase text-dim">{t.label}</p>
-                  <p className="mt-1">{cars.map((c) => c.name).join(" · ")}</p>
+                  <ul className="mt-1 space-y-0.5">
+                    {cars.map((c) => (
+                      <li key={c.name}>
+                        <span className="text-fg">{c.name}</span>
+                        {c.price && (
+                          <span className="text-sm text-dim"> — {c.price}</span>
+                        )}
+                        {c.limited && (
+                          <span className="ml-2 text-xs glow-taillight">Limited</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </HudPanel>
             );
@@ -78,14 +92,22 @@ export default function TierList() {
         </HudPanel>
       )}
 
+      <p className="text-sm text-dim">
+        The <span className="text-fg">Porsche 911 GT3 RS</span> is bought with Robux
+        (200), not Cash, so it sits outside these Cash-value tiers. The dealership has
+        more cars than are ranked here — see the full <Link href="/cars/">cars list</Link>.
+      </p>
+
       <HudPanel>
         <Marquee color="hud" as="h2" className="text-xl">
-          How we&apos;ll rank cars
+          How we rank cars
         </Marquee>
         <p className="mt-3 text-dim">
           Ghost Driver is a No Hesi-style game: you score by weaving through dense
-          highway traffic at speed. That means a car&apos;s value comes down to three
-          things, which is exactly what our tiers will weigh once stats are confirmed:
+          highway traffic at speed. Right now we rank by <span className="glow-active">value
+          for Cash</span> — verified prices plus what top creators call the best buys.
+          A car&apos;s full worth comes down to three things, and we&apos;ll re-grade on
+          the first two once stock speeds are confirmed:
         </p>
         <ul className="mt-4 space-y-3 text-dim">
           <li>
@@ -105,8 +127,8 @@ export default function TierList() {
           </li>
         </ul>
         <p className="mt-4 text-dim">
-          When the in-game numbers are verified, each car gets an S–C grade based on
-          this — never on guesswork. Learn how to afford your next upgrade in the{" "}
+          Every grade is backed by real prices and player consensus — never guesswork.
+          Learn how to afford your next upgrade in the{" "}
           <Link href="/cash/">cash guide</Link>.
         </p>
       </HudPanel>

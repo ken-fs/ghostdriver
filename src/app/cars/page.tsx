@@ -108,8 +108,17 @@ export default function CarsPage() {
               <div>
                 <dt className="font-semibold text-fg">Audi RS7</dt>
                 <dd className="mt-1 text-dim">
-                  A big, powerful all-wheel-drive fastback — stable and quick, leaning
-                  toward planted high-speed cruising over razor-sharp agility.
+                  A big, powerful all-wheel-drive fastback — stable and quick. In Ghost
+                  Driver it&apos;s the standout value buy at 260k Cash, widely called the
+                  best stats-for-money car in the game.
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-fg">Audi R8</dt>
+                <dd className="mt-1 text-dim">
+                  A twin-turbo mid-engine supercar and the RS7&apos;s pricier sibling at
+                  760k Cash — serious power, but roughly triple the price for a smaller
+                  value edge.
                 </dd>
               </div>
             </dl>
