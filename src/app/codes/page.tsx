@@ -9,9 +9,16 @@ const active = CODES.filter((c) => c.status === "active");
 const unconfirmed = CODES.filter((c) => c.status === "unconfirmed");
 const expired = CODES.filter((c) => c.status === "expired");
 
+// Build-time month+year — kept fresh by the 6-hourly rebuild. Matches how players
+// search ("ghost driver codes 2026" / "...codes august 2026").
+const MONTH_YEAR = new Date().toLocaleString("en-US", {
+  month: "long",
+  year: "numeric",
+});
+
 export const metadata = buildMeta({
-  title: "Ghost Driver Codes",
-  description: `All working ${SITE.game} codes, checked ${CODES_LAST_CHECKED}. Redeem them for free Cash and skip the early grind.`,
+  title: `Ghost Driver Codes (${MONTH_YEAR}) — Free Cash`,
+  description: `All working ${SITE.game} codes for ${MONTH_YEAR}, verified ${CODES_LAST_CHECKED}. Redeem them for free Cash and skip the early grind.`,
   path: "/codes/",
 });
 
@@ -72,8 +79,8 @@ export default function CodesPage() {
           Ghost Driver Codes
         </Marquee>
         <p className="mt-3 text-dim">
-          Free Cash codes for Roblox {SITE.game}, cross-checked and dated. Redeem
-          them fast — they expire quickly.
+          Every working {SITE.game} code for {MONTH_YEAR}, cross-checked and dated —
+          free Cash for Roblox {SITE.game}. Redeem them fast; they expire quickly.
         </p>
         <div className="mt-3">
           <VerifiedStamp date={CODES_LAST_CHECKED} />
