@@ -25,3 +25,4 @@ next-env.d.ts
 
 # internal strategy docs (keep private)
 /BACKLINKS.md
+/wiki-starter.md
