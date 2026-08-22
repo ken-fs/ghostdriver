@@ -12,16 +12,18 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-08-18";
+export const CODES_LAST_CHECKED = "2026-08-22";
 
 export const CODES: GameCode[] = [
   { code: "THANKSFOR1MIL", reward: "10,000 Cash", status: "active" },
   { code: "SINCEROWASHERE", reward: "10,000 Cash", status: "active" },
   {
+    // 2026-08-22: disagreement resolved toward expired — 3/4 sources (beebom,
+    // pockettactics, gamerant/newest) list it expired; only the older
+    // tryhardguides still shows it. Reclassified from unconfirmed to expired.
     code: "SORRYFORLATE",
     reward: "10,000 Cash",
-    status: "unconfirmed",
-    note: "Sources disagree on whether this still works — try it, but it may have expired.",
+    status: "expired",
   },
 ];
 
