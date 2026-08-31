@@ -1,9 +1,40 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { CopyButton } from "@/components/CopyButton";
 import { SITE, NAV } from "@/lib/site";
 import { CODES, CODES_LAST_CHECKED } from "@/data/codes";
 import { GAME } from "@/data/game";
+
+// The homepage — not /codes — is what Google ranks for the "ghost driver codes"
+// query cluster (its biggest demand). Give it a codes-first, dated title so it
+// matches how players search ("ghost driver codes august 2026 / ... roblox") and
+// reads as fresh. `title.absolute` bypasses the layout's "%s — Ghost Driver Hub"
+// template. Build-time month+year stays current via the 6-hourly rebuild.
+const MONTH_YEAR = new Date().toLocaleString("en-US", {
+  month: "long",
+  year: "numeric",
+});
+
+export const metadata: Metadata = {
+  title: { absolute: `Ghost Driver Codes (${MONTH_YEAR}) — Working Roblox Codes` },
+  description: `Working ${SITE.game} codes for ${MONTH_YEAR}, verified ${CODES_LAST_CHECKED}. Copy free Cash codes, plus the best cars, tier list and cash guides for Roblox ${SITE.game}.`,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    url: "/",
+    title: `${SITE.game} Codes (${MONTH_YEAR}) — Working Roblox Codes`,
+    description: SITE.tagline,
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.game} Codes (${MONTH_YEAR}) — Working Roblox Codes`,
+    description: SITE.tagline,
+    images: ["/og.png"],
+  },
+};
 
 const activeCodes = CODES.filter((c) => c.status === "active");
 const nf = new Intl.NumberFormat("en-US");
