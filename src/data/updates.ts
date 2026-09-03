@@ -34,6 +34,15 @@ export const NEXT_CODE_MILESTONE = 400_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
   {
+    date: "2026-09-03",
+    title: "Full car roster documented",
+    items: [
+      "All 14 cars verified with stats — the limited Takama F10 GT ($1.8M, Lv.15) and Castellani Specchiera (840 HP) left the shop Aug 21/22.",
+      "The Aug 29 event's new limited car is still unverified from 2+ sources — added once confirmed.",
+    ],
+    source: "Gamepur + Sportskeeda cross-check",
+  },
+  {
     date: "2026-09-01",
     title: "Follow-up patch",
     items: ["Data and bug fixes following the Aug 29 update."],

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { CopyButton } from "@/components/CopyButton";
+import { ScreenshotStrip, YouTubeEmbed } from "@/components/media";
 import { SITE, NAV } from "@/lib/site";
 import { CODES, CODES_LAST_CHECKED } from "@/data/codes";
 import { GAME } from "@/data/game";
@@ -59,7 +60,7 @@ const HOME_FAQ = [
   },
   {
     q: "What is the best car in Ghost Driver?",
-    a: "On value for Cash, the Audi RS7 (260,000 Cash) is the best buy for most players — the tier list ranks every confirmed car S–C. The limited Ferrari 812 Superfast is the endgame pick for collectors.",
+    a: "The Voss RT10 TT ($760,000) is the best car overall — 215 mph and the fastest 0-60 in the game. The best value buy is the Rangy Helly ($120,000, 710 HP). The tier list ranks all 14 cars by value for Cash.",
   },
 ];
 
@@ -83,11 +84,27 @@ export default function Home() {
     })),
   };
 
+  const videoLd = {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: "I Played Roblox Ghost Driver For The FIRST TIME",
+    description:
+      "First-look gameplay review of Roblox Ghost Driver — highway traffic weaving, drifting physics and car customization.",
+    thumbnailUrl: "https://i.ytimg.com/vi/LvwkzCRWF1g/hqdefault.jpg",
+    uploadDate: "2026-08-12",
+    embedUrl: "https://www.youtube-nocookie.com/embed/LvwkzCRWF1g",
+    author: { "@type": "Person", name: "ImSincero" },
+  };
+
   return (
     <div className="space-y-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoLd) }}
       />
       {/* Hero */}
       <section className="pt-4">
@@ -113,6 +130,16 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Official game screenshots — real visuals beat stock text */}
+      <ScreenshotStrip
+        shots={[
+          { src: "/media/shot1.webp", alt: "Ghost Driver gameplay — sports car on the highway (Roblox)" },
+          { src: "/media/shot2.webp", alt: "Ghost Driver gameplay — weaving through traffic (Roblox)" },
+          { src: "/media/shot4.webp", alt: "Ghost Driver gameplay — high-speed near-miss (Roblox)" },
+          { src: "/media/shot5.webp", alt: "Ghost Driver gameplay — dealership and cars (Roblox)" },
+        ]}
+      />
 
       <div className="lane-divider" />
 
@@ -211,6 +238,22 @@ export default function Home() {
             <Link href="/about/">More about how we verify →</Link>
           </p>
         </HudPanel>
+      </section>
+
+      <section>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Watch Ghost Driver gameplay
+        </Marquee>
+        <div className="mt-5">
+          <YouTubeEmbed
+            id="LvwkzCRWF1g"
+            title="I Played Roblox Ghost Driver For The FIRST TIME — ImSincero"
+          />
+          <p className="mt-2 text-xs text-dim">
+            Video: ImSincero on YouTube — a first-look review of the driving, drifting
+            and customization systems.
+          </p>
+        </div>
       </section>
 
       <div className="lane-divider" />

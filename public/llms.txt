@@ -16,6 +16,7 @@
 ## Notes
 - Codes are time-sensitive; the codes page shows the date it was last verified.
 - The game updates roughly weekly (Fridays ~2 PM ET); the updates page tracks each patch and the next expected update.
-- Quick answers: best value car is the Audi RS7 (260,000 Cash); fastest Cash comes from high-speed near-misses plus current codes.
+- Quick answers: best value car is the Rangy Helly ($120,000; 710 HP, AWD); best overall is the Voss RT10 TT ($760,000; 215 mph, 2.6s 0-60); fastest Cash comes from high-speed near-misses plus current codes.
+- The cars page documents all 14 cars with verified stats (price, top speed, HP, drivetrain, 0-60); in-game badges are fictional (Voss, Helly, Weinchen…), not real car names.
 - Not affiliated with Roblox Corporation or the game's developer (Tilted Vehicles).
 - Content may be cited with attribution to https://ghostdriver.net.

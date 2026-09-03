@@ -1,30 +1,49 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
+import { ScreenshotStrip } from "@/components/media";
 import { CARS, CARS_KNOWN, CARS_LAST_CHECKED, CARS_ROSTER_PARTIAL } from "@/data/cars";
 import { SITE } from "@/lib/site";
 
 export const metadata = buildMeta({
-  title: "Ghost Driver Cars List",
-  description: `Every car in Roblox ${SITE.game} with price and top speed. We document the full dealership roster as it is confirmed in-game.`,
+  title: "Ghost Driver Cars List — All 14 Cars & Stats",
+  description: `Every car in Roblox ${SITE.game} with verified price, top speed, HP, drivetrain and 0-60 — plus which ones are actually worth buying.`,
   path: "/cars/",
 });
 
 // Plain-text mirror of the visible FAQ below — drives the FAQPage schema.
 const CARS_FAQ = [
   {
+    q: "How many cars are in Ghost Driver?",
+    a: "14 cars have been documented: 12 permanent cars plus 2 limited-time cars (Takama F10 GT and Castellani Specchiera) that left the shop in late August 2026. Weekly events keep adding more.",
+  },
+  {
     q: "How do you get cars in Ghost Driver?",
-    a: "You buy them at the in-game dealership with Cash earned by driving through traffic. Redeeming codes gives you Cash to speed that up.",
+    a: "Walk to the dealership next to the spawn point and step into the green circle to open the purchase menu. Cars are bought with Cash earned by driving — codes give you a head start.",
   },
   {
-    q: "What is the best car?",
-    a: "On Cash value, the Audi RS7 is the standout buy — see the tier list for the full ranking. In a No Hesi-style game the best all-rounders balance high top speed with handling sharp enough to thread heavy traffic.",
+    q: "What is the best car in Ghost Driver?",
+    a: "The Voss RT10 TT ($760,000) is the best car overall — fastest 0-60 (2.6s) and joint-highest top speed (215 mph). The best value buy is the Rangy Helly at $120,000. See the tier list for the full ranking.",
   },
   {
-    q: "Can you tune cars?",
-    a: "Yes — the game has received tuning and customization updates, so cars can be upgraded beyond their stock stats.",
+    q: "What is the fastest car in Ghost Driver?",
+    a: "Three cars tie at 215 mph: the Voss RT10 TT ($760,000) and the limited Castellani Specchiera (840 HP, the most powerful car in the game).",
+  },
+  {
+    q: "Is there a free car in Ghost Driver?",
+    a: "Yes — the Wulfbrecht RZ7 is the free starter car every player begins with.",
   },
 ];
+
+const nf = new Intl.NumberFormat("en-US");
+
+function price(c: (typeof CARS)[number]): string {
+  if (c.priceCash === 0) return "FREE";
+  const parts = [];
+  if (c.priceCash) parts.push(`$${nf.format(c.priceCash)}`);
+  if (c.priceRobux) parts.push(`R$${nf.format(c.priceRobux)}`);
+  return parts.join(" / ");
+}
 
 export default function CarsPage() {
   const faqLd = {
@@ -47,7 +66,7 @@ export default function CarsPage() {
       position: i + 1,
       name: c.name,
       url: `${SITE.url}/cars/#${c.slug}`,
-      ...(c.price ? { description: c.price } : {}),
+      description: `${c.topSpeedMph} mph · ${c.hp} HP · ${price(c)}`,
     })),
   };
 
@@ -66,186 +85,110 @@ export default function CarsPage() {
           Cars List
         </Marquee>
         <p className="mt-3 text-dim">
-          The full {SITE.game} dealership roster with stats — the reference no other
-          site has finished yet.
+          All {CARS.length} documented {SITE.game} cars with verified stats — price,
+          top speed, horsepower, drivetrain and 0-60 — cross-checked from two
+          independent sources. The Value column is{" "}
+          <Link href="/tier-list/">our tier-list grade</Link>; Game Tier is the
+          game&apos;s own B/A/S classification.
         </p>
         <div className="mt-3">
           <VerifiedStamp date={CARS_LAST_CHECKED} />
         </div>
       </header>
 
-      {CARS.length > 0 ? (
-        <>
-          <HudPanel>
-            <table className="w-full text-left text-sm">
-              <thead className="text-dim">
-                <tr className="border-b-2 border-lane">
-                  <th className="py-2">Car</th>
-                  <th className="py-2">Price</th>
-                  <th className="py-2">Top Speed</th>
-                  <th className="py-2">Value Tier</th>
-                </tr>
-              </thead>
-              <tbody>
-                {CARS.map((c) => (
-                  <tr key={c.name} id={c.slug} className="border-b border-lane align-top scroll-mt-20">
-                    <td className="py-2 font-medium text-fg">
-                      {c.name}
-                      {c.limited && (
-                        <span className="ml-2 hud-panel px-1.5 py-0.5 text-xs glow-taillight">
-                          Limited
-                        </span>
-                      )}
-                      {c.note && <p className="mt-1 text-xs text-dim">{c.note}</p>}
-                    </td>
-                    <td className="py-2">{c.price ?? "check in-game"}</td>
-                    <td className="py-2">{c.topSpeed ?? "check in-game"}</td>
-                    <td className="py-2">
-                      {c.tier ? (
-                        <Link href="/tier-list/" className="glow-sodium font-semibold">
-                          {c.tier}
-                        </Link>
-                      ) : (
-                        <span className="text-dim">Robux</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </HudPanel>
-          {CARS_ROSTER_PARTIAL && (
-            <p className="text-sm text-dim">
-              These are the cars confirmed by name so far. Prices, top speeds and the
-              rest of the dealership are being captured from in-game — we publish them
-              here as they&apos;re verified, never guessed. Cars are bought with{" "}
-              {CARS_KNOWN.currency} and can be tuned. See the{" "}
-              <Link href="/cash/">cash guide</Link> to afford them.
-            </p>
-          )}
+      <ScreenshotStrip
+        shots={[
+          { src: "/media/shot1.webp", alt: "Ghost Driver gameplay — car on the highway (Roblox)" },
+          { src: "/media/shot3.webp", alt: "Ghost Driver gameplay — traffic weaving at speed (Roblox)" },
+        ]}
+      />
 
-          <HudPanel>
-            <Marquee color="hud" as="h2" className="text-xl">
-              About the cars
-            </Marquee>
-            <p className="mt-3 text-dim">
-              {SITE.game} models its dealership on real high-performance road cars.
-              Here is what each confirmed vehicle is known for in the real world — a
-              rough guide to how it tends to feel in a traffic-weaving game, where top
-              speed builds your score but sharp handling keeps you alive between cars.
-            </p>
-            <dl className="mt-4 space-y-4">
-              <div>
-                <dt className="font-semibold text-fg">
-                  Ferrari 812 Superfast{" "}
-                  <span className="text-xs glow-taillight">Limited</span>
-                </dt>
-                <dd className="mt-1 text-dim">
-                  A front-mid V12 grand tourer built for huge straight-line speed — the
-                  aspirational, hard-to-get pick. The widebody &ldquo;N-Largo&rdquo;
-                  variant is a rare tuner edition, which fits its status as a limited car
-                  here.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">Porsche 911 GT3 RS</dt>
-                <dd className="mt-1 text-dim">
-                  A track-focused, high-downforce sports car famous for precision and
-                  cornering — the kind of car that rewards weaving through tight gaps
-                  rather than pure top-end.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">BMW M3 (G80)</dt>
-                <dd className="mt-1 text-dim">
-                  A balanced performance sedan and a popular tuning base — well-rounded
-                  speed and control, and a common favorite for players who like to modify
-                  their build.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">Audi RS7</dt>
-                <dd className="mt-1 text-dim">
-                  A big, powerful all-wheel-drive fastback — stable and quick. In Ghost
-                  Driver it&apos;s the standout value buy at 260k Cash, widely called the
-                  best stats-for-money car in the game.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">Audi R8</dt>
-                <dd className="mt-1 text-dim">
-                  A twin-turbo mid-engine supercar and the RS7&apos;s pricier sibling at
-                  760k Cash — serious power, but roughly triple the price for a smaller
-                  value edge.
-                </dd>
-              </div>
-            </dl>
-            <p className="mt-4 text-xs text-dim">
-              Descriptions reflect the real-world cars for context only. In-game prices,
-              top speeds and tuning figures are not shown until verified.
-            </p>
-          </HudPanel>
+      <HudPanel className="overflow-x-auto">
+        <table className="w-full min-w-[640px] text-left text-sm">
+          <thead className="text-dim">
+            <tr className="border-b-2 border-lane">
+              <th className="py-2 pr-3">Car</th>
+              <th className="py-2 pr-3">Price</th>
+              <th className="py-2 pr-3">Top Speed</th>
+              <th className="py-2 pr-3">HP</th>
+              <th className="py-2 pr-3">0-60</th>
+              <th className="py-2 pr-3">Drive</th>
+              <th className="py-2 pr-3">Game Tier</th>
+              <th className="py-2">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {CARS.map((c) => (
+              <tr key={c.slug} id={c.slug} className="border-b border-lane align-top scroll-mt-20">
+                <td className="py-2 pr-3 font-medium text-fg">
+                  {c.name}
+                  {c.limited && (
+                    <span className="ml-2 hud-panel px-1.5 py-0.5 text-xs glow-taillight">
+                      Limited
+                    </span>
+                  )}
+                  {c.levelReq && (
+                    <span className="ml-2 hud-panel px-1.5 py-0.5 text-xs text-dim">
+                      Lv.{c.levelReq}
+                    </span>
+                  )}
+                  {c.note && <p className="mt-1 text-xs text-dim">{c.note}</p>}
+                </td>
+                <td className="py-2 pr-3">{price(c)}</td>
+                <td className="py-2 pr-3">{c.topSpeedMph} mph</td>
+                <td className="py-2 pr-3">{c.hp}</td>
+                <td className="py-2 pr-3">{c.zeroToSixty}</td>
+                <td className="py-2 pr-3">{c.drivetrain}</td>
+                <td className="py-2 pr-3">{c.gameTier ?? "—"}</td>
+                <td className="py-2">
+                  <Link href={`/tier-list/#${c.slug}`} className="glow-sodium font-semibold">
+                    {c.valueTier}
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </HudPanel>
 
-          <HudPanel>
-            <Marquee color="hud" as="h2" className="text-xl">
-              Cars FAQ
-            </Marquee>
-            <dl className="mt-4 space-y-4 text-dim">
-              <div>
-                <dt className="font-semibold text-fg">How do you get cars in Ghost Driver?</dt>
-                <dd className="mt-1">
-                  You buy them at the in-game dealership with Cash earned by driving
-                  through traffic. Redeeming <Link href="/codes/">codes</Link> gives you
-                  Cash to speed that up.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">What is the best car?</dt>
-                <dd className="mt-1">
-                  Once in-game top speeds are verified we&apos;ll rank them on the{" "}
-                  <Link href="/tier-list/">tier list</Link>. In a No Hesi-style game the
-                  best all-rounders balance high top speed with handling sharp enough to
-                  thread heavy traffic.
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-fg">Can you tune cars?</dt>
-                <dd className="mt-1">
-                  Yes — the game has received tuning and customization updates, so cars
-                  can be upgraded beyond their stock stats.
-                </dd>
-              </div>
-            </dl>
-          </HudPanel>
-        </>
-      ) : (
-        <HudPanel>
-          <Marquee color="sodium" as="h2" className="text-xl">
-            Roster being documented
-          </Marquee>
-          <p className="mt-3 text-dim">
-            {SITE.game} is in pre-alpha and the dealership is still expanding, so no
-            complete car list with verified prices exists anywhere yet. Rather than
-            invent numbers, here is what is confirmed in-game right now:
-          </p>
-          <ul className="mt-4 space-y-2 text-dim">
-            <li>
-              • You begin with a free{" "}
-              <span className="glow-active">starter car</span> (slow).
-            </li>
-            <li>
-              • All faster cars are bought at the{" "}
-              <span className="glow-hud">{CARS_KNOWN.boughtAt}</span> with{" "}
-              {CARS_KNOWN.currency}.
-            </li>
-          </ul>
-          <p className="mt-4 text-sm text-dim">
-            We are pulling the exact names, prices and speeds and will publish the full
-            table here first. In the meantime, learn how to afford them in the{" "}
-            <Link href="/cash/">cash guide</Link>.
-          </p>
-        </HudPanel>
+      {CARS_ROSTER_PARTIAL && (
+        <p className="text-sm text-dim">
+          The Aug 29 – Sep 5 event added a new limited-time car whose name we can&apos;t
+          yet confirm from two independent sources — it appears here the moment it&apos;s
+          verified, never guessed. Track it on the <Link href="/updates/">updates page</Link>.
+        </p>
       )}
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How to buy cars
+        </Marquee>
+        <p className="mt-3 text-dim">
+          Cars are bought at the {CARS_KNOWN.boughtAt}. The shop menu has filters for
+          brand, type and name. Everything except the Reinhardt RT32 (Robux Starter
+          Pack) is bought with {CARS_KNOWN.currency} earned from driving — and cars can
+          be tuned beyond their stock stats.
+        </p>
+        <p className="mt-3 text-dim">
+          Short on Cash? The <Link href="/cash/">cash guide</Link> shows the fastest
+          farming loop, and the current <Link href="/codes/">codes</Link> hand you free
+          Cash toward your first upgrade.
+        </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Cars FAQ
+        </Marquee>
+        <dl className="mt-4 space-y-4 text-dim">
+          {CARS_FAQ.map((f) => (
+            <div key={f.q}>
+              <dt className="font-semibold text-fg">{f.q}</dt>
+              <dd className="mt-1">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </HudPanel>
     </div>
   );
 }

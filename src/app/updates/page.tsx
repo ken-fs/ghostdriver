@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
+import { ScreenshotStrip } from "@/components/media";
 import { GAME } from "@/data/game";
 import {
   UPDATE_LOG,
@@ -101,6 +102,16 @@ export default function Updates() {
           <Link href="/codes/">codes page</Link>.
         </p>
       </HudPanel>
+
+      <ScreenshotStrip
+        shots={[
+          { src: "/media/shot1.webp", alt: "Ghost Driver gameplay screenshot (Roblox)" },
+          { src: "/media/shot2.webp", alt: "Ghost Driver highway gameplay screenshot (Roblox)" },
+          { src: "/media/shot3.webp", alt: "Ghost Driver traffic weaving screenshot (Roblox)" },
+          { src: "/media/shot4.webp", alt: "Ghost Driver high-speed gameplay screenshot (Roblox)" },
+        ]}
+        caption="Official Ghost Driver (Roblox) screenshots — © Tilted Vehicles. New event visuals land with each weekly update."
+      />
 
       {/* Dated update log — data-driven, one entry per game update */}
       <section className="space-y-4">

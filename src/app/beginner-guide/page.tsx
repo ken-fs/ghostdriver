@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
+import { ScreenshotStrip, YouTubeEmbed } from "@/components/media";
 import { GAME, GAMEPLAY_LOOP } from "@/data/game";
 import { SITE } from "@/lib/site";
 
@@ -19,6 +20,13 @@ export default function BeginnerGuide() {
         </Marquee>
         <p className="mt-3 text-dim">{GAME.concept}</p>
       </header>
+
+      <ScreenshotStrip
+        shots={[
+          { src: "/media/shot3.webp", alt: "Ghost Driver gameplay — first drive on the highway (Roblox)" },
+          { src: "/media/shot5.webp", alt: "Ghost Driver — dealership where you buy cars (Roblox)" },
+        ]}
+      />
 
       <HudPanel>
         <Marquee color="hud" as="h2" className="text-xl">
@@ -61,6 +69,21 @@ export default function BeginnerGuide() {
           <Link href="/cash/">cash farming guide</Link> to keep the money flowing.
         </p>
       </HudPanel>
+
+      <section>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Watch: full beginner walkthrough
+        </Marquee>
+        <div className="mt-5">
+          <YouTubeEmbed
+            id="63O2vSsmR80"
+            title="Ghost Driver Guide — How To Get MONEY FAST, Leveling Up, Best Settings — CHALLS"
+          />
+          <p className="mt-2 text-xs text-dim">
+            Video: CHALLS on YouTube — money farming, leveling and settings walkthrough.
+          </p>
+        </div>
+      </section>
 
       <HudPanel>
         <Marquee color="taillight" as="h2" className="text-xl">

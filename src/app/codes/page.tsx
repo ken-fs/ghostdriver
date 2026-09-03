@@ -112,9 +112,10 @@ export default function CodesPage() {
         </Marquee>
         <p className="mt-3 text-dim">
           Code Cash goes furthest on your first real car. Most players should save
-          toward the <Link href="/cars/#audi-rs7">Audi RS7</Link> (260,000 Cash) — the{" "}
-          <Link href="/tier-list/">tier list</Link> ranks it the best value in the game,
-          and the <Link href="/cash/">cash guide</Link> shows how to close the gap fast.
+          toward the <Link href="/cars/#rangy-helly">Rangy Helly</Link> ($120,000) — the{" "}
+          <Link href="/tier-list/">tier list</Link> ranks it the best value in the game
+          (710 HP, AWD), and the <Link href="/cash/">cash guide</Link> shows how to
+          close the gap fast.
         </p>
       </HudPanel>
 

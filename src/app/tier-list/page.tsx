@@ -1,45 +1,48 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
-import { CARS, CARS_LAST_CHECKED } from "@/data/cars";
+import { CARS, CARS_LAST_CHECKED, type ValueTier } from "@/data/cars";
 import { SITE } from "@/lib/site";
 
 export const metadata = buildMeta({
   title: "Ghost Driver Car Tier List — Best Cars",
-  description: `How the best cars in Roblox ${SITE.game} compare, and how we rank them S–C once in-game top speeds are verified.`,
+  description: `The best cars in Roblox ${SITE.game} ranked by value for Cash — verified prices, top speeds and HP for all 14 cars.`,
   path: "/tier-list/",
 });
 
-const TIERS: { tier: "S" | "A" | "B" | "C"; color: string; label: string }[] = [
-  { tier: "S", color: "glow-sodium", label: "Top value — buy first" },
+const TIERS: { tier: ValueTier; color: string; label: string }[] = [
+  { tier: "S", color: "glow-sodium", label: "Best value — buy these first" },
   { tier: "A", color: "glow-hud", label: "Strong buy" },
-  { tier: "B", color: "glow-active", label: "Pricey — lower value" },
-  { tier: "C", color: "text-dim", label: "Skip / starter" },
+  { tier: "B", color: "glow-active", label: "Situational — outclassed at the price" },
+  { tier: "C", color: "text-dim", label: "Skip / collector" },
 ];
 
 const TIER_FAQ = [
   {
     q: "What is the best car in Ghost Driver?",
-    a: "For Cash value, the Audi RS7 (260,000 Cash) is the best car in Ghost Driver right now — creators widely call it the best stats-for-money buy. The limited Ferrari 812 Superfast is the top-end pick but requires Level 15 and around 1.8M Cash (player-reported).",
+    a: "The Voss RT10 TT ($760,000) is the best car overall — fastest 0-60 in the game (2.6s) with a 215 mph top speed and AWD. The best value car is the Rangy Helly ($120,000): 710 HP and AWD at a mid-game price.",
   },
   {
     q: "What car should I buy first in Ghost Driver?",
-    a: "Save for the BMW M3 (240,000 Cash) or stretch to the Audi RS7 (260,000 Cash). Either is a huge jump from the free starter car — the RS7 is the better long-term value if you can afford the extra 20,000 Cash.",
+    a: "Buy the Kitsuni LX at $40,000 to get off the free starter, then save for the Rangy Helly ($120,000) — the best Cash-per-performance car in the game. After that, farm toward the Voss RT8 ($260,000).",
   },
   {
-    q: "Is the Porsche 911 GT3 RS worth the Robux?",
-    a: "It costs 200 Robux instead of Cash, so it skips the grind rather than ranking in the Cash-value tiers. Worth it only if you want to pay to skip early progression.",
+    q: "What is the fastest car in Ghost Driver?",
+    a: "Top speed ties at 215 mph between the Voss RT10 TT ($760,000 Cash) and the limited Castellani Specchiera (840 HP — the most powerful car, gone from the shop since Aug 22, 2026).",
+  },
+  {
+    q: "Is the Reinhardt RT32 Starter Pack worth it?",
+    a: "Only for the extras. The R$199 Starter Pack's car has 520 HP — mid-tier power you can out-earn with Cash quickly. You buy it for the custom license, Global Radio and style, not the stats.",
   },
   {
     q: "How is this tier list ranked?",
-    a: "By value for Cash, using verified in-game prices and top-creator consensus. Stock top speeds aren't officially published yet, so we don't rank on raw speed — and we never invent numbers.",
+    a: "By value for Cash: verified in-game prices measured against verified stats (top speed, HP, drivetrain, 0-60), cross-checked between two independent sources, plus creator consensus. The game's own B/A/S performance tiers are shown separately on the cars list.",
   },
 ];
 
-export default function TierList() {
-  const ranked = CARS.filter((c) => c.tier);
-  const bestValue = CARS.find((c) => c.slug === "audi-rs7")!;
+const nf = new Intl.NumberFormat("en-US");
 
+export default function TierList() {
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -62,10 +65,10 @@ export default function TierList() {
           Car Tier List
         </Marquee>
         <p className="mt-3 text-dim">
-          Which {SITE.game} cars are actually worth your Cash, ranked by value for money
-          from verified in-game prices and top-creator consensus. Stock top speeds
-          aren&apos;t published yet, so this is a value ranking — we&apos;ll re-grade on
-          pure speed once those are confirmed.
+          Which {SITE.game} cars are actually worth your Cash. Every car is graded on
+          verified price vs verified stats — never guesswork. The game&apos;s own B/A/S
+          performance tiers are a different system; you&apos;ll find them on the{" "}
+          <Link href="/cars/">cars list</Link>.
         </p>
         <div className="mt-3">
           <VerifiedStamp date={CARS_LAST_CHECKED} />
@@ -76,98 +79,85 @@ export default function TierList() {
       <HudPanel className="border-active">
         <p className="text-lg">
           <span className="glow-active font-semibold">Quick answer:</span> the best
-          value car in {SITE.game} right now is the{" "}
-          <Link href={`/cars/#${bestValue.slug}`} className="text-fg font-semibold">
-            {bestValue.name}
+          value car in {SITE.game} is the{" "}
+          <Link href="/cars/#rangy-helly" className="text-fg font-semibold">
+            Rangy Helly
           </Link>{" "}
-          ({bestValue.price}). Stretch to the limited{" "}
-          <Link href="/cars/#ferrari-812-superfast" className="text-fg font-semibold">
-            Ferrari 812 Superfast
+          ($120,000 — 710 HP, AWD). The best car overall is the{" "}
+          <Link href="/cars/#voss-rt10-tt" className="text-fg font-semibold">
+            Voss RT10 TT
           </Link>{" "}
-          only for the endgame.
+          ($760,000 — 215 mph, 2.6s 0-60).
         </p>
       </HudPanel>
 
-      {ranked.length > 0 ? (
-        <div className="space-y-4">
-          {TIERS.map((t) => {
-            const cars = ranked.filter((c) => c.tier === t.tier);
-            if (cars.length === 0) return null;
-            return (
-              <HudPanel key={t.tier} className="flex gap-4">
-                <div className={`display text-4xl ${t.color}`}>{t.tier}</div>
-                <div>
-                  <p className="text-xs uppercase text-dim">{t.label}</p>
-                  <ul className="mt-1 space-y-0.5">
-                    {cars.map((c) => (
-                      <li key={c.name}>
-                        <span className="text-fg">{c.name}</span>
-                        {c.price && (
-                          <span className="text-sm text-dim"> — {c.price}</span>
-                        )}
-                        {c.limited && (
-                          <span className="ml-2 text-xs glow-taillight">Limited</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </HudPanel>
-            );
-          })}
-        </div>
-      ) : (
-        <HudPanel>
-          <Marquee color="sodium" as="h2" className="text-xl">
-            Rankings coming as stats are confirmed
-          </Marquee>
-          <p className="mt-3 text-dim">
-            A tier list is only worth reading if the stats behind it are real.{" "}
-            {SITE.game} is in pre-alpha and its car prices and top speeds aren&apos;t
-            published anywhere yet, so we won&apos;t fake a ranking. Cars confirmed to
-            be in the dealership so far:
-          </p>
-          <ul className="mt-4 flex flex-wrap gap-2">
-            {CARS.map((c) => (
-              <li key={c.name} className="hud-panel px-3 py-1 text-sm">
-                {c.name}
-                {c.limited && <span className="ml-2 glow-taillight text-xs">Limited</span>}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 text-dim">
-            The moment we verify their speeds in-game, they get ranked S–C here. Track
-            the roster on the <Link href="/cars/">cars list</Link> and new vehicles on{" "}
-            <Link href="/updates/">updates</Link>.
-          </p>
-        </HudPanel>
-      )}
-
-      <p className="text-sm text-dim">
-        The <span className="text-fg">Porsche 911 GT3 RS</span> is bought with Robux
-        (200), not Cash, so it sits outside these Cash-value tiers. The dealership has
-        more cars than are ranked here — see the full <Link href="/cars/">cars list</Link>.
-      </p>
+      {/* Value tier board */}
+      <div className="space-y-4">
+        {TIERS.map((t) => {
+          const cars = CARS.filter((c) => c.valueTier === t.tier);
+          if (cars.length === 0) return null;
+          return (
+            <HudPanel key={t.tier} className="flex gap-4">
+              <div className={`display text-4xl ${t.color}`}>{t.tier}</div>
+              <div>
+                <p className="text-xs uppercase text-dim">{t.label}</p>
+                <ul className="mt-1 space-y-0.5">
+                  {cars.map((c) => (
+                    <li key={c.slug}>
+                      <a href={`#${c.slug}`} className="text-fg">
+                        {c.name}
+                      </a>
+                      <span className="text-sm text-dim">
+                        {" "}
+                        — {c.priceCash ? `$${nf.format(c.priceCash)}` : c.priceRobux ? `R$${nf.format(c.priceRobux)}` : "FREE"} · {c.topSpeedMph} mph · {c.hp} HP
+                      </span>
+                      {c.limited && (
+                        <span className="ml-2 text-xs glow-taillight">Limited</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </HudPanel>
+          );
+        })}
+      </div>
 
       {/* Per-car detail blocks — the depth layer behind the ranking */}
       <section className="space-y-4">
         <Marquee color="sodium" as="h2" className="text-xl">
-          Every ranked car, in detail
+          Every car, in detail
         </Marquee>
         {CARS.map((c) => (
           <HudPanel key={c.slug}>
+            <span id={c.slug} className="block scroll-mt-20" />
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="display text-xl glow-sodium">
                 {c.name}
-                {c.tier && (
-                  <span className="ml-3 text-sm glow-hud">Tier {c.tier}</span>
+                <span className="ml-3 text-sm glow-hud">Value {c.valueTier}</span>
+                {c.gameTier && (
+                  <span className="ml-3 text-sm text-dim">Game Tier {c.gameTier}</span>
                 )}
                 {c.limited && (
                   <span className="ml-3 text-sm glow-taillight">Limited</span>
                 )}
               </h3>
-              <span className="text-sm text-dim">{c.price ?? "check in-game"}</span>
+              <span className="text-sm text-dim">
+                {c.priceCash === 0 && !c.priceRobux
+                  ? "FREE"
+                  : [
+                      c.priceCash ? `$${nf.format(c.priceCash)}` : null,
+                      c.priceRobux ? `R$${nf.format(c.priceRobux)}` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" / ")}
+              </span>
             </div>
+            <p className="mt-2 text-sm text-dim">
+              {c.topSpeedMph} mph · {c.hp} HP · {c.drivetrain} · 0-60 {c.zeroToSixty}
+              {c.levelReq ? ` · requires Level ${c.levelReq}` : ""}
+              {c.limitedUntil ? ` · left shop ${c.limitedUntil}` : ""}
+            </p>
             <dl className="mt-3 space-y-2 text-dim">
               <div>
                 <dt className="inline font-semibold text-fg">How to get it: </dt>
@@ -183,7 +173,7 @@ export default function TierList() {
               </div>
             </dl>
             <p className="mt-3 text-sm">
-              <Link href={`/cars/#${c.slug}`}>Full specs on the cars list →</Link>
+              <Link href={`/cars/#${c.slug}`}>Full stats on the cars list →</Link>
             </p>
           </HudPanel>
         ))}
@@ -199,11 +189,9 @@ export default function TierList() {
           How we rank cars
         </Marquee>
         <p className="mt-3 text-dim">
-          Ghost Driver is a No Hesi-style game: you score by weaving through dense
-          highway traffic at speed. Right now we rank by <span className="glow-active">value
-          for Cash</span> — verified prices plus what top creators call the best buys.
-          A car&apos;s full worth comes down to three things, and we&apos;ll re-grade on
-          the first two once stock speeds are confirmed:
+          {SITE.game} is a No Hesi-style game: you score by weaving through dense
+          highway traffic at speed. Our value grade weighs three verified numbers
+          against the verified price:
         </p>
         <ul className="mt-4 space-y-3 text-dim">
           <li>
@@ -212,18 +200,19 @@ export default function TierList() {
             traffic game.
           </li>
           <li>
-            <span className="glow-hud">Handling &amp; braking</span> — raw speed is
-            useless if you can&apos;t thread gaps. Cars that turn and slow sharply let
-            you commit to tighter lines without crashing.
+            <span className="glow-hud">Acceleration &amp; drivetrain</span> — 0-60 time
+            and AWD/RWD decide how quickly you reach scoring speed and how much grip
+            you have threading gaps.
           </li>
           <li>
             <span className="glow-active">Value for Cash</span> — a mid-price car that
-            performs near the top tier is often the smarter buy than the most expensive
-            one, especially early.
+            performs near the flagship is the smarter buy: the Rangy Helly delivers
+            710 HP for $120,000 while the $1.8M Takama F10 GT managed only 563.
           </li>
         </ul>
         <p className="mt-4 text-dim">
-          Every grade is backed by real prices and player consensus — never guesswork.
+          Every number on this page is cross-checked between two independent published
+          sources — when they conflict, we say so instead of picking one silently.
           Learn how to afford your next upgrade in the{" "}
           <Link href="/cash/">cash guide</Link>.
         </p>

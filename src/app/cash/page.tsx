@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
+import { YouTubeEmbed } from "@/components/media";
 import { SITE } from "@/lib/site";
 
 export const metadata = buildMeta({
@@ -94,9 +95,11 @@ export default function CashGuide() {
           <li className="flex gap-3">
             <span className="display glow-taillight">01</span>
             <span>
-              Your <span className="text-fg">first car upgrade</span>. Getting off the
-              slow starter is the single biggest jump in earning rate — everything else
-              can wait.
+              Your <span className="text-fg">first car upgrade</span> — the{" "}
+              <Link href="/cars/#kitsuni-lx">Kitsuni LX</Link> ($40,000), or hold out
+              for the <Link href="/cars/#rangy-helly">Rangy Helly</Link> ($120,000),
+              the best value car in the game. Getting off the slow starter is the
+              single biggest jump in earning rate — everything else can wait.
             </span>
           </li>
           <li className="flex gap-3">
@@ -110,11 +113,28 @@ export default function CashGuide() {
             <span className="display glow-taillight">03</span>
             <span>
               Saving toward the <span className="text-fg">next tier of car</span> once
-              your current one is maxed. Cosmetics last — performance first.
+              your current one is maxed — the{" "}
+              <Link href="/cars/#voss-rt8">Voss RT8</Link> ($260,000) is the sweet
+              spot before the $760K flagship. Cosmetics last — performance first.
             </span>
           </li>
         </ol>
       </HudPanel>
+
+      <section>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Watch: money &amp; leveling guide
+        </Marquee>
+        <div className="mt-5">
+          <YouTubeEmbed
+            id="Pky5r-d-DzQ"
+            title="How To GET MONEY & LEVEL UP FAST in Ghost Driver — FULL GUIDE"
+          />
+          <p className="mt-2 text-xs text-dim">
+            Video: money farming and leveling walkthrough (YouTube).
+          </p>
+        </div>
+      </section>
 
       <HudPanel>
         <Marquee color="hud" as="h2" className="text-xl">
