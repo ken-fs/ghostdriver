@@ -206,7 +206,7 @@ export default function CodesPage() {
         </Marquee>
         <p className="mt-3 text-dim">
           The {SITE.developer} developer group drops new {SITE.game} codes around
-          milestones — the current codes celebrated a 1-million milestone, and the game
+          milestones — recent ones celebrated 250K and 350K likes, and the game
           is still in pre-alpha with frequent updates. New codes tend to appear when:
         </p>
         <ul className="mt-4 space-y-2 text-dim">

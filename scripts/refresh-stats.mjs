@@ -12,10 +12,30 @@ const UNIVERSE_ID = "10173311467";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, "..", "src", "data", "stats.json");
 
-async function getJson(url) {
-  const res = await fetch(url, { headers: { accept: "application/json" } });
-  if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
-  return res.json();
+// Roblox occasionally 403s a network/region on one endpoint but not another.
+// Try the official host first, then the roproxy.com mirror of the same API.
+const HOSTS = ["https://games.roblox.com", "https://games.roproxy.com"];
+
+async function getJson(path) {
+  let lastErr;
+  for (const host of HOSTS) {
+    const url = `${host}${path}`;
+    try {
+      const res = await fetch(url, {
+        headers: {
+          accept: "application/json",
+          // A plain browser UA: Roblox's edge rejects some bare-fetch clients.
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0 Safari/537.36",
+        },
+      });
+      if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
+      return await res.json();
+    } catch (e) {
+      lastErr = e; // fall through to the mirror
+    }
+  }
+  throw lastErr;
 }
 
 function num(v, label) {
@@ -25,12 +45,9 @@ function num(v, label) {
   return v;
 }
 
-const game = (await getJson(
-  `https://games.roblox.com/v1/games?universeIds=${UNIVERSE_ID}`,
-)).data?.[0];
-const votes = (await getJson(
-  `https://games.roblox.com/v1/games/votes?universeIds=${UNIVERSE_ID}`,
-)).data?.[0];
+const game = (await getJson(`/v1/games?universeIds=${UNIVERSE_ID}`)).data?.[0];
+const votes = (await getJson(`/v1/games/votes?universeIds=${UNIVERSE_ID}`))
+  .data?.[0];
 
 if (!game || !votes) throw new Error("empty API response — aborting write");
 

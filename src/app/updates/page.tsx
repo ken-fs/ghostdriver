@@ -53,10 +53,16 @@ export default function Updates() {
         </Marquee>
         <ul className="mt-4 space-y-3 text-dim">
           <li>
-            • The game is a live pre-alpha and ships frequent updates with new cars.
-            New codes usually drop around milestones — the{" "}
-            <code className="glow-active">THANKSFOR1MIL</code> code celebrated a
-            1-million milestone.
+            • The Aug 29 content update added a limited-time car, new vehicle
+            customization options and an anti-cheat system, plus data and bug
+            fixes (official update notes); a follow-up patch landed Sep 1.
+          </li>
+          <li>
+            • New codes drop around like milestones —{" "}
+            <code className="glow-active">THANKSFOR250K</code> and{" "}
+            <code className="glow-active">THANKSFOR350K</code> celebrated 250K and
+            350K likes. Likes are now closing in on 400K, so the next milestone
+            code is likely near.
           </li>
           <li>
             • We track new codes here first — grab them on the{" "}

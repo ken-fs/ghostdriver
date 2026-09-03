@@ -50,7 +50,9 @@ export const CARS: Car[] = [
   },
 ];
 
-/** Roster is still incomplete — the dealership has more cars than are documented. */
+/** Roster is still incomplete — the dealership has more cars than are documented.
+ *  The Aug 29, 2026 update also added a limited-time car (name not yet verified
+ *  from 2+ sources — add it once confirmed) plus vehicle customization options. */
 export const CARS_ROSTER_PARTIAL = true;
 
 /** What we know qualitatively about how cars work. */
