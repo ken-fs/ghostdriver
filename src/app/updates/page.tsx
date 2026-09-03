@@ -16,6 +16,21 @@ export const metadata = buildMeta({
   path: "/updates/",
 });
 
+const UPDATES_FAQ = [
+  {
+    q: "When is the next Ghost Driver update?",
+    a: `Ghost Driver updates roughly weekly, on Fridays around 2:00 PM ET. The current event is ${UPDATE_CADENCE.currentEvent}, so the next update is expected ${UPDATE_CADENCE.nextExpected}`,
+  },
+  {
+    q: "When is the next Ghost Driver code?",
+    a: "Likely at the 400K-likes milestone — the 250K and 350K milestones each dropped a code. New codes also sometimes arrive alongside weekly updates.",
+  },
+  {
+    q: "What was in the last Ghost Driver update?",
+    a: "The Aug 29, 2026 update added new limited-time vehicles, vehicle customization options and an anti-cheat system, plus data and bug fixes. A follow-up patch landed Sep 1.",
+  },
+];
+
 const nf = new Intl.NumberFormat("en-US");
 const approval = Math.round(
   (GAME.traction.likes / (GAME.traction.likes + GAME.traction.dislikes)) * 1000,
@@ -29,8 +44,22 @@ const STATS = [
 ];
 
 export default function Updates() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: UPDATES_FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <header>
         <Marquee as="h1" color="hud" className="text-3xl sm:text-5xl">
           Updates &amp; Stats
@@ -98,6 +127,20 @@ export default function Updates() {
         New cars from these updates are added to the <Link href="/cars/">cars list</Link>{" "}
         and ranked on the <Link href="/tier-list/">tier list</Link> once verified.
       </p>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Updates FAQ
+        </Marquee>
+        <dl className="mt-4 space-y-4">
+          {UPDATES_FAQ.map((f) => (
+            <div key={f.q}>
+              <dt className="font-semibold text-fg">{f.q}</dt>
+              <dd className="mt-1 text-dim">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
+      </HudPanel>
 
       <p className="text-sm text-dim">
         Stats are pulled from Roblox and refreshed regularly. Play the game on{" "}
