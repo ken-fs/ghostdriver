@@ -59,6 +59,36 @@ export default function BeginnerGuide() {
       </HudPanel>
 
       <HudPanel>
+        <Marquee color="active" as="h2" className="text-xl">
+          Scoring, Streaks &amp; Crashing
+        </Marquee>
+        <ul className="mt-4 space-y-2 text-dim">
+          <li>
+            • <span className="text-fg">Near-misses chain into a combo multiplier</span>{" "}
+            (the &ldquo;swerved&rdquo; popup and the X-counter on screen). Long streaks are
+            where real money is made.
+          </li>
+          <li>
+            • <span className="text-fg">Crashing wipes your current points</span> — you
+            can restore them with Robux, but it&apos;s rarely worth it. Bank clean runs
+            instead.
+          </li>
+          <li>
+            • <span className="text-fg">Drift / traction control is a toggle</span> in the
+            UI, not a separate key — turn it off for grippier handling while you learn.
+          </li>
+          <li>
+            • <span className="text-fg">Upgrades are level-gated.</span> Tuning stages
+            unlock as you level, so early levels are best spent driving, not hoarding.
+          </li>
+          <li>
+            • <span className="text-fg">Free group reward:</span> play 30 minutes, like
+            and favorite the game, and join the Tilted Vehicles group for a free car.
+          </li>
+        </ul>
+      </HudPanel>
+
+      <HudPanel>
         <Marquee color="sodium" as="h2" className="text-xl">
           Fastest Start
         </Marquee>
@@ -94,6 +124,11 @@ export default function BeginnerGuide() {
             • <span className="text-fg">Braking too early.</span> Lifting off at every
             car kills your speed multiplier. Commit to gaps and use Shift to drift, not
             the brake.
+          </li>
+          <li>
+            • <span className="text-fg">Overdriving the streak.</span> Pushing one more
+            swerve with a big multiplier is how runs end — a crash wipes the streak.
+            Cash out clean laps.
           </li>
           <li>
             • <span className="text-fg">Driving empty lanes.</span> No traffic means no

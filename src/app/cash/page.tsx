@@ -16,8 +16,20 @@ const TIPS = [
     p: "Cash scales with risk. Threading gaps in dense traffic at speed pays far more than cruising an empty lane. Hug cars without touching them.",
   },
   {
+    h: "Protect your swerve streak",
+    p: "Chained near-misses build an on-screen combo multiplier (creators have shown 200X+ runs) — and crashing resets it. One measured run banked $30,000 in about 8 minutes of clean swerving. A slower lap you finish beats a fast one you crash.",
+  },
+  {
     h: "Keep your speed up",
     p: "Higher speed = bigger multipliers on each near-miss. Use Shift to drift around slow clusters instead of braking to a crawl.",
+  },
+  {
+    h: "Do your daily & weekly quests",
+    p: "The quest panel pays guaranteed Cash on top of driving — e.g. $750 for holding 200+ mph for 30 seconds, 30 times. Check it every session; it's the most reliable income in the game.",
+  },
+  {
+    h: "Join the group for a free car",
+    p: "The Tilted Vehicles group reward: play 30 minutes, like and favorite the game, and join the group — creators report a free car for new players. A free upgrade for zero grinding.",
   },
   {
     h: "Redeem codes for a head start",
@@ -27,6 +39,10 @@ const TIPS = [
   {
     h: "Reinvest at the dealership",
     p: "A faster car survives tighter gaps and earns more per run, which snowballs. Spend on your next car before cosmetics.",
+  },
+  {
+    h: "Claim your rewards",
+    p: "After each run, hit claim on the session rewards panel — unclaimed earnings don't bank. Make it the last thing you do before leaving a server.",
   },
 ];
 
