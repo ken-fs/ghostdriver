@@ -88,6 +88,19 @@ export default function Updates() {
         <Marquee color="active" as="h2" className="text-xl">
           When is the next update?
         </Marquee>
+        <figure className="mt-4">
+          <img
+            src="/media/event-limited-cars.webp"
+            alt="Ghost Driver 'New Limited Cars!' event artwork — Aug 29 to Sep 5 (Roblox)"
+            width={767}
+            height={432}
+            loading="lazy"
+            className="hud-panel w-full object-cover"
+          />
+          <figcaption className="mt-2 text-xs text-dim">
+            Official artwork for the current event — © Tilted Vehicles / Roblox.
+          </figcaption>
+        </figure>
         <p className="mt-3 text-dim">
           {SITE.game} updates on a near-weekly rhythm: {UPDATE_CADENCE.rhythm} The
           current event is <span className="text-fg">{UPDATE_CADENCE.currentEvent}</span>,
