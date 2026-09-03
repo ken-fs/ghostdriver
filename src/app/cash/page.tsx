@@ -29,9 +29,39 @@ const TIPS = [
   },
 ];
 
+// Plain-text mirror of the visible FAQ below — drives the FAQPage schema.
+const CASH_FAQ = [
+  {
+    q: "What is the fastest way to get Cash in Ghost Driver?",
+    a: "High-speed near-misses in heavy traffic. Redeeming the current codes also grants instant Cash for a fast head start.",
+  },
+  {
+    q: "Do codes give Cash?",
+    a: "Yes — every current Ghost Driver code rewards Cash, which is why redeeming them early is the quickest boost.",
+  },
+  {
+    q: "Is there a Cash limit?",
+    a: "None that players have reported. Keep driving and your balance keeps climbing — the only cap is how long you can weave without crashing.",
+  },
+];
+
 export default function CashGuide() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: CASH_FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <header>
         <Marquee as="h1" color="active" className="text-3xl sm:text-5xl">
           How to Get Cash Fast

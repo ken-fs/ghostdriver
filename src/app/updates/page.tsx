@@ -2,6 +2,12 @@ import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee, VerifiedStamp } from "@/components/ui";
 import { GAME } from "@/data/game";
+import {
+  UPDATE_LOG,
+  UPDATE_CADENCE,
+  UPDATES_LAST_CHECKED,
+  NEXT_CODE_MILESTONE,
+} from "@/data/updates";
 import { SITE } from "@/lib/site";
 
 export const metadata = buildMeta({
@@ -34,7 +40,7 @@ export default function Updates() {
           actively updated.
         </p>
         <div className="mt-3">
-          <VerifiedStamp date={GAME.tractionAsOf} />
+          <VerifiedStamp date={UPDATES_LAST_CHECKED} />
         </div>
       </header>
 
@@ -47,33 +53,51 @@ export default function Updates() {
         ))}
       </div>
 
-      <HudPanel>
+      {/* Update rhythm — answers "when is the next Ghost Driver update" directly */}
+      <HudPanel className="border-active">
         <Marquee color="active" as="h2" className="text-xl">
-          What&apos;s happening
+          When is the next update?
         </Marquee>
-        <ul className="mt-4 space-y-3 text-dim">
-          <li>
-            • The Aug 29 content update added a limited-time car, new vehicle
-            customization options and an anti-cheat system, plus data and bug
-            fixes (official update notes); a follow-up patch landed Sep 1.
-          </li>
-          <li>
-            • New codes drop around like milestones —{" "}
-            <code className="glow-active">THANKSFOR250K</code> and{" "}
-            <code className="glow-active">THANKSFOR350K</code> celebrated 250K and
-            350K likes. Likes are now closing in on 400K, so the next milestone
-            code is likely near.
-          </li>
-          <li>
-            • We track new codes here first — grab them on the{" "}
-            <Link href="/codes/">codes page</Link>.
-          </li>
-          <li>
-            • Full car roster and tier list are being documented as the dealership
-            expands.
-          </li>
-        </ul>
+        <p className="mt-3 text-dim">
+          {SITE.game} updates on a near-weekly rhythm: {UPDATE_CADENCE.rhythm} The
+          current event is <span className="text-fg">{UPDATE_CADENCE.currentEvent}</span>,
+          so the next update is expected{" "}
+          <span className="glow-active">{UPDATE_CADENCE.nextExpected}</span>
+        </p>
+        <p className="mt-3 text-dim">
+          Code watch: likes are at {nf.format(GAME.traction.likes)} and both the 250K
+          and 350K milestones dropped a code — the{" "}
+          <span className="text-fg">{nf.format(NEXT_CODE_MILESTONE)}-likes</span>{" "}
+          milestone is the likely next trigger. When it lands it goes straight to the{" "}
+          <Link href="/codes/">codes page</Link>.
+        </p>
       </HudPanel>
+
+      {/* Dated update log — data-driven, one entry per game update */}
+      <section className="space-y-4">
+        <Marquee color="hud" as="h2" className="text-xl">
+          Update Log
+        </Marquee>
+        {UPDATE_LOG.map((u) => (
+          <HudPanel key={u.date}>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="display text-lg glow-sodium">{u.title}</h3>
+              <span className="text-sm text-dim">{u.date}</span>
+            </div>
+            <ul className="mt-3 space-y-1.5 text-dim">
+              {u.items.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
+            <p className="mt-3 text-xs text-dim">Source: {u.source}</p>
+          </HudPanel>
+        ))}
+      </section>
+
+      <p className="text-sm text-dim">
+        New cars from these updates are added to the <Link href="/cars/">cars list</Link>{" "}
+        and ranked on the <Link href="/tier-list/">tier list</Link> once verified.
+      </p>
 
       <p className="text-sm text-dim">
         Stats are pulled from Roblox and refreshed regularly. Play the game on{" "}

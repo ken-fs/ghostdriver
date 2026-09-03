@@ -10,9 +10,57 @@ export const metadata = buildMeta({
   path: "/cars/",
 });
 
+// Plain-text mirror of the visible FAQ below — drives the FAQPage schema.
+const CARS_FAQ = [
+  {
+    q: "How do you get cars in Ghost Driver?",
+    a: "You buy them at the in-game dealership with Cash earned by driving through traffic. Redeeming codes gives you Cash to speed that up.",
+  },
+  {
+    q: "What is the best car?",
+    a: "On Cash value, the Audi RS7 is the standout buy — see the tier list for the full ranking. In a No Hesi-style game the best all-rounders balance high top speed with handling sharp enough to thread heavy traffic.",
+  },
+  {
+    q: "Can you tune cars?",
+    a: "Yes — the game has received tuning and customization updates, so cars can be upgraded beyond their stock stats.",
+  },
+];
+
 export default function CarsPage() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: CARS_FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${SITE.game} Cars List`,
+    numberOfItems: CARS.length,
+    itemListElement: CARS.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      url: `${SITE.url}/cars/#${c.slug}`,
+      ...(c.price ? { description: c.price } : {}),
+    })),
+  };
+
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <header>
         <Marquee as="h1" color="hud" className="text-3xl sm:text-5xl">
           Cars List
@@ -35,11 +83,12 @@ export default function CarsPage() {
                   <th className="py-2">Car</th>
                   <th className="py-2">Price</th>
                   <th className="py-2">Top Speed</th>
+                  <th className="py-2">Value Tier</th>
                 </tr>
               </thead>
               <tbody>
                 {CARS.map((c) => (
-                  <tr key={c.name} className="border-b border-lane align-top">
+                  <tr key={c.name} id={c.slug} className="border-b border-lane align-top scroll-mt-20">
                     <td className="py-2 font-medium text-fg">
                       {c.name}
                       {c.limited && (
@@ -51,6 +100,15 @@ export default function CarsPage() {
                     </td>
                     <td className="py-2">{c.price ?? "check in-game"}</td>
                     <td className="py-2">{c.topSpeed ?? "check in-game"}</td>
+                    <td className="py-2">
+                      {c.tier ? (
+                        <Link href="/tier-list/" className="glow-sodium font-semibold">
+                          {c.tier}
+                        </Link>
+                      ) : (
+                        <span className="text-dim">Robux</span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>

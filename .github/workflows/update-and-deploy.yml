@@ -44,3 +44,7 @@ jobs:
           else
             echo "No stats change."
           fi
+
+      # Ping Bing & co. whenever the site content may have changed.
+      - name: Submit URLs to IndexNow
+        run: node scripts/submit-indexnow.mjs

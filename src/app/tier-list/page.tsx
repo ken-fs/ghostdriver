@@ -17,11 +17,46 @@ const TIERS: { tier: "S" | "A" | "B" | "C"; color: string; label: string }[] = [
   { tier: "C", color: "text-dim", label: "Skip / starter" },
 ];
 
+const TIER_FAQ = [
+  {
+    q: "What is the best car in Ghost Driver?",
+    a: "For Cash value, the Audi RS7 (260,000 Cash) is the best car in Ghost Driver right now — creators widely call it the best stats-for-money buy. The limited Ferrari 812 Superfast is the top-end pick but requires Level 15 and around 1.8M Cash (player-reported).",
+  },
+  {
+    q: "What car should I buy first in Ghost Driver?",
+    a: "Save for the BMW M3 (240,000 Cash) or stretch to the Audi RS7 (260,000 Cash). Either is a huge jump from the free starter car — the RS7 is the better long-term value if you can afford the extra 20,000 Cash.",
+  },
+  {
+    q: "Is the Porsche 911 GT3 RS worth the Robux?",
+    a: "It costs 200 Robux instead of Cash, so it skips the grind rather than ranking in the Cash-value tiers. Worth it only if you want to pay to skip early progression.",
+  },
+  {
+    q: "How is this tier list ranked?",
+    a: "By value for Cash, using verified in-game prices and top-creator consensus. Stock top speeds aren't officially published yet, so we don't rank on raw speed — and we never invent numbers.",
+  },
+];
+
 export default function TierList() {
   const ranked = CARS.filter((c) => c.tier);
+  const bestValue = CARS.find((c) => c.slug === "audi-rs7")!;
+
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: TIER_FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <div className="space-y-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
+
       <header>
         <Marquee as="h1" color="sodium" className="text-3xl sm:text-5xl">
           Car Tier List
@@ -36,6 +71,22 @@ export default function TierList() {
           <VerifiedStamp date={CARS_LAST_CHECKED} />
         </div>
       </header>
+
+      {/* Direct answer — the #1 question behind this query, quotable as-is */}
+      <HudPanel className="border-active">
+        <p className="text-lg">
+          <span className="glow-active font-semibold">Quick answer:</span> the best
+          value car in {SITE.game} right now is the{" "}
+          <Link href={`/cars/#${bestValue.slug}`} className="text-fg font-semibold">
+            {bestValue.name}
+          </Link>{" "}
+          ({bestValue.price}). Stretch to the limited{" "}
+          <Link href="/cars/#ferrari-812-superfast" className="text-fg font-semibold">
+            Ferrari 812 Superfast
+          </Link>{" "}
+          only for the endgame.
+        </p>
+      </HudPanel>
 
       {ranked.length > 0 ? (
         <div className="space-y-4">
@@ -98,6 +149,51 @@ export default function TierList() {
         more cars than are ranked here — see the full <Link href="/cars/">cars list</Link>.
       </p>
 
+      {/* Per-car detail blocks — the depth layer behind the ranking */}
+      <section className="space-y-4">
+        <Marquee color="sodium" as="h2" className="text-xl">
+          Every ranked car, in detail
+        </Marquee>
+        {CARS.map((c) => (
+          <HudPanel key={c.slug}>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="display text-xl glow-sodium">
+                {c.name}
+                {c.tier && (
+                  <span className="ml-3 text-sm glow-hud">Tier {c.tier}</span>
+                )}
+                {c.limited && (
+                  <span className="ml-3 text-sm glow-taillight">Limited</span>
+                )}
+              </h3>
+              <span className="text-sm text-dim">{c.price ?? "check in-game"}</span>
+            </div>
+            <dl className="mt-3 space-y-2 text-dim">
+              <div>
+                <dt className="inline font-semibold text-fg">How to get it: </dt>
+                <dd className="inline">{c.howToGet}</dd>
+              </div>
+              <div>
+                <dt className="inline font-semibold text-fg">Why it ranks here: </dt>
+                <dd className="inline">{c.analysis}</dd>
+              </div>
+              <div>
+                <dt className="inline font-semibold text-fg">Best for: </dt>
+                <dd className="inline">{c.bestFor}</dd>
+              </div>
+            </dl>
+            <p className="mt-3 text-sm">
+              <Link href={`/cars/#${c.slug}`}>Full specs on the cars list →</Link>
+            </p>
+          </HudPanel>
+        ))}
+        <p className="text-sm text-dim">
+          Short on Cash for your next tier? Farm it with the{" "}
+          <Link href="/cash/">cash guide</Link> and the current{" "}
+          <Link href="/codes/">working codes</Link>.
+        </p>
+      </section>
+
       <HudPanel>
         <Marquee color="hud" as="h2" className="text-xl">
           How we rank cars
@@ -131,6 +227,20 @@ export default function TierList() {
           Learn how to afford your next upgrade in the{" "}
           <Link href="/cash/">cash guide</Link>.
         </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          Tier List FAQ
+        </Marquee>
+        <dl className="mt-4 space-y-4">
+          {TIER_FAQ.map((f) => (
+            <div key={f.q}>
+              <dt className="font-semibold text-fg">{f.q}</dt>
+              <dd className="mt-1 text-dim">{f.a}</dd>
+            </div>
+          ))}
+        </dl>
       </HudPanel>
     </div>
   );

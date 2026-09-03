@@ -59,7 +59,7 @@ const HOME_FAQ = [
   },
   {
     q: "What is the best car in Ghost Driver?",
-    a: "The dealership tops out at supercars like the Ferrari 812 Superfast. Once in-game top speeds are verified we rank every car S–C on the tier list — we won't guess before then.",
+    a: "On value for Cash, the Audi RS7 (260,000 Cash) is the best buy for most players — the tier list ranks every confirmed car S–C. The limited Ferrari 812 Superfast is the endgame pick for collectors.",
   },
 ];
 
@@ -73,8 +73,22 @@ const HUBS = [
 ];
 
 export default function Home() {
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: HOME_FAQ.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="space-y-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       {/* Hero */}
       <section className="pt-4">
         <Marquee as="h1" color="sodium" className="text-4xl sm:text-6xl">
