@@ -2,9 +2,8 @@
  * Ghost Driver redeem codes — single source of truth.
  * RULE: never invent codes. Only list codes verified from 2+ sources or an
  * official source. Mark uncertain ones with status "unconfirmed".
- * Sources this pull (2026-09-03): IGN (Sep 1, in-game tested), tryhardguides
- * (Aug 30), pcgamesn (Aug 30), progameguides (Aug 29), beebom (Sep 1),
- * gamerant (Aug 27) — cross-checked.
+ * Sources this pull (2026-09-04): IGN (Sep 1, in-game tested), dexerto
+ * (Sep 3), gamerant (Sep 1), pcgamesn (Aug 30), beebom (Sep 1) — cross-checked.
  */
 export interface GameCode {
   code: string;
@@ -14,7 +13,7 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-09-03";
+export const CODES_LAST_CHECKED = "2026-09-04";
 
 export const CODES: GameCode[] = [
   {
@@ -27,24 +26,21 @@ export const CODES: GameCode[] = [
     note: "IGN (tested) says 20,000 Cash; PCGamesN lists 10K.",
   },
   {
-    // 2026-09-03: fresh sources split — IGN (Sep 1) and tryhardguides (Aug 30)
-    // moved it to expired; beebom (Sep 1) and pcgamesn (Aug 30) still list it
-    // working. Moved active → unconfirmed ("might still work") until the
-    // disagreement resolves. Reward also disputed: RadioTimes/beebom say $15K,
-    // PCGamesN says 10K.
+    // 2026-09-04: disagreement resolved toward expired — IGN (Sep 1, in-game
+    // tested), GameRant (Sep 1) and Dexerto (Sep 3) all list it expired;
+    // only PCGamesN (Aug 30) and Beebom (Sep 1) still show it. Moved
+    // unconfirmed → expired. Reward stayed disputed ($15K vs 10K) to the end.
     code: "THANKSFOR250K",
     reward: "10,000–15,000 Cash",
-    status: "unconfirmed",
-    note: "Reports conflict (Sep 1): IGN & Try Hard Guides say expired, Beebom & PCGamesN still list it — try your luck.",
+    status: "expired",
   },
   {
-    // 2026-09-03: same split — IGN (Sep 1) and tryhardguides (Aug 30) say
-    // expired; beebom (Sep 1), pcgamesn and progameguides (Aug 29–30) still
-    // list it working. Moved active → unconfirmed.
+    // 2026-09-04: same resolution — IGN (Sep 1, tested), GameRant (Sep 1)
+    // and Dexerto (Sep 3) all expired; PCGamesN and Beebom still list it.
+    // Moved unconfirmed → expired.
     code: "SINCEROWASHERE",
     reward: "10,000 Cash",
-    status: "unconfirmed",
-    note: "Reports conflict (Sep 1): IGN & Try Hard Guides say expired, but Beebom, PCGamesN & ProGameGuides still list it.",
+    status: "expired",
   },
   {
     // 2026-08-31: gamerant (Aug 27) and radiotimes both list it expired;

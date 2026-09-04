@@ -24,7 +24,7 @@ const UPDATES_FAQ = [
   },
   {
     q: "When is the next Ghost Driver code?",
-    a: "Likely at the 400K-likes milestone — the 250K and 350K milestones each dropped a code. New codes also sometimes arrive alongside weekly updates.",
+    a: "Any day now — the 400K-likes milestone has already been crossed, and the 250K and 350K milestones each dropped a code. New codes also sometimes arrive alongside weekly updates.",
   },
   {
     q: "What was in the last Ghost Driver update?",
@@ -108,11 +108,11 @@ export default function Updates() {
           <span className="glow-active">{UPDATE_CADENCE.nextExpected}</span>
         </p>
         <p className="mt-3 text-dim">
-          Code watch: likes are at {nf.format(GAME.traction.likes)} and both the 250K
-          and 350K milestones dropped a code — the{" "}
+          Code watch: likes are at {nf.format(GAME.traction.likes)} — the{" "}
           <span className="text-fg">{nf.format(NEXT_CODE_MILESTONE)}-likes</span>{" "}
-          milestone is the likely next trigger. When it lands it goes straight to the{" "}
-          <Link href="/codes/">codes page</Link>.
+          milestone is already crossed, and both 250K and 350K dropped a code, so a
+          new code could land any day (likely with the weekly update). When it does
+          it goes straight to the <Link href="/codes/">codes page</Link>.
         </p>
       </HudPanel>
 

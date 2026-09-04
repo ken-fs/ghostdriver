@@ -15,7 +15,7 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-09-03";
+export const UPDATES_LAST_CHECKED = "2026-09-04";
 
 /**
  * Verified cadence: updates land roughly weekly, Fridays ~2:00 PM ET, and each
