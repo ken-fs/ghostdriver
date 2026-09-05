@@ -2,8 +2,10 @@
  * Ghost Driver redeem codes — single source of truth.
  * RULE: never invent codes. Only list codes verified from 2+ sources or an
  * official source. Mark uncertain ones with status "unconfirmed".
- * Sources this pull (2026-09-04): IGN (Sep 1, in-game tested), dexerto
- * (Sep 3), gamerant (Sep 1), pcgamesn (Aug 30), beebom (Sep 1) — cross-checked.
+ * Sources this pull (2026-09-05): dexerto (Sep 3 — one active code,
+ * THANKSFOR350K only), IGN (Sep 1, in-game tested), gamerant (Sep 1).
+ * Note: likes passed 400K (408K on Sep 5) but no THANKSFOR400K-style code
+ * has appeared in any source yet.
  */
 export interface GameCode {
   code: string;
@@ -13,7 +15,7 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-09-04";
+export const CODES_LAST_CHECKED = "2026-09-05";
 
 export const CODES: GameCode[] = [
   {

@@ -15,24 +15,35 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-09-04";
+export const UPDATES_LAST_CHECKED = "2026-09-05";
 
 /**
  * Verified cadence: updates land roughly weekly, Fridays ~2:00 PM ET, and each
  * event runs one week (Aug 14→21, Aug 21→28, Aug 29→Sep 5 — Roblox event pages).
- * The current "New Limited Cars!" event ends Sep 5, 2:00 PM ET, so the next
- * update is expected around then.
+ * 2026-09-05: the "New Limited Cars!" event has ended and no new event is
+ * running on the Roblox event page; a client build did land Sep 4 ~1:20 PM ET
+ * (games API), contents unverified.
  */
 export const UPDATE_CADENCE = {
   rhythm: "Weekly — new updates land on Fridays around 2:00 PM ET.",
-  currentEvent: "New Limited Cars! (Aug 29 – Sep 5, 2:00 PM ET)",
-  nextExpected: "Around Sep 5, 2026, when the current event ends.",
+  currentEvent: "None running — the 'New Limited Cars!' event ended Sep 5.",
+  nextExpected: "Next weekly update around Friday, Sep 11, 2026, ~2:00 PM ET.",
 } as const;
 
 /** Likes milestone the next code is expected at (250K and 350K both dropped codes). */
 export const NEXT_CODE_MILESTONE = 400_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
+  {
+    date: "2026-09-04",
+    title: "Weekly build lands, event ends",
+    items: [
+      "Game client updated Sep 4, ~1:20 PM ET (Roblox games API) — patch contents not yet covered by 2+ sources.",
+      "The Aug 29 'New Limited Cars!' event has ended; no event is currently running on the Roblox event page.",
+      "The Aug 29 limited car is now reported by 2 sources as a McLaren (creator JoJewyd + TikTok update coverage) — kept out of the roster until its in-game name and stats are confirmed.",
+    ],
+    source: "Roblox games API + event page + TikTok coverage",
+  },
   {
     date: "2026-09-03",
     title: "Full car roster documented",
