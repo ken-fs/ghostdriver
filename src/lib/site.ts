@@ -21,6 +21,7 @@ export const NAV: { href: string; label: string }[] = [
   { href: "/cash/", label: "Cash Guide" },
   { href: "/beginner-guide/", label: "Beginner Guide" },
   { href: "/updates/", label: "Updates" },
+  { href: "/events/", label: "Events" },
 ];
 
 /** Footer / legal + info pages. */
