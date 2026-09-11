@@ -42,7 +42,7 @@ const EVENTS_FAQ = [
   },
   {
     q: "When is the next Ghost Driver code?",
-    a: `The ${nf.format(NEXT_CODE_MILESTONE)}-likes milestone is already crossed, and the 250K and 350K milestones each dropped a code — so a new code could land any day, likely with a weekly update.`,
+    a: `THANKSFOR415K (25,000 Cash) just dropped with the Sep 10 update, alongside NEWMAP, VECTOR and TECZWASHERE. The next likes milestone to watch is ${nf.format(NEXT_CODE_MILESTONE / 1000)}K — past drops came at 250K, 350K and 415K.`,
   },
 ];
 
@@ -103,12 +103,13 @@ export default function Events() {
           Next code watch
         </Marquee>
         <p className="mt-3 text-dim">
-          Likes are at {nf.format(GAME.traction.likes)} — the{" "}
-          <span className="text-fg">{nf.format(NEXT_CODE_MILESTONE)}-likes</span>{" "}
-          milestone is already crossed. Both the 250K and 350K milestones dropped a
-          code, so the next one could land any day, most likely with a weekly Friday
-          update. The moment it is verified it goes on the{" "}
-          <Link href="/codes/">codes page</Link>.
+          The 415K-likes milestone just paid out —{" "}
+          <span className="text-fg">THANKSFOR415K (25,000 Cash)</span> dropped with the
+          Sep 10 update, alongside NEWMAP, VECTOR and TECZWASHERE. Likes are already at{" "}
+          {nf.format(GAME.traction.likes)}; the next watch is the{" "}
+          <span className="text-fg">{nf.format(NEXT_CODE_MILESTONE)}-likes</span> mark,
+          most likely with a weekly update. Verified codes land on the{" "}
+          <Link href="/codes/">codes page</Link> immediately.
         </p>
       </HudPanel>
 

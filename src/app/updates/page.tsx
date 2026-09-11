@@ -24,11 +24,11 @@ const UPDATES_FAQ = [
   },
   {
     q: "When is the next Ghost Driver code?",
-    a: "Any day now — the 400K-likes milestone has already been crossed, and the 250K and 350K milestones each dropped a code. New codes also sometimes arrive alongside weekly updates.",
+    a: "The 415K-likes milestone just paid out — THANKSFOR415K dropped with the Sep 10 update alongside three more codes. The next likes milestone to watch is 450K, and new codes also arrive alongside weekly updates.",
   },
   {
     q: "What was in the last Ghost Driver update?",
-    a: "The Aug 29, 2026 update added new limited-time vehicles, vehicle customization options and an anti-cheat system, plus data and bug fixes. A follow-up patch landed Sep 1.",
+    a: "The Sep 10, 2026 update (landed a day earlier than the usual Friday rhythm) shipped a 4-code drop: THANKSFOR415K, NEWMAP, VECTOR and TECZWASHERE. NEWMAP's name implies a new map; full patch contents are still being verified.",
   },
 ];
 

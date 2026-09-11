@@ -2,10 +2,12 @@
  * Ghost Driver redeem codes — single source of truth.
  * RULE: never invent codes. Only list codes verified from 2+ sources or an
  * official source. Mark uncertain ones with status "unconfirmed".
- * Sources this pull (2026-09-05): dexerto (Sep 3 — one active code,
- * THANKSFOR350K only), IGN (Sep 1, in-game tested), gamerant (Sep 1).
- * Note: likes passed 400K (408K on Sep 5) but no THANKSFOR400K-style code
- * has appeared in any source yet.
+ * Sources this pull (2026-09-11): TryHardGuides (Sep 6) + RadioTimes (fresh,
+ * with reward values) + YouTube creator coverage — 3-source. Roblox API
+ * corroboration: likes 436K (415K milestone crossed), game updated Sep 10
+ * 20:31 UTC. THANKSFOR350K retired the same wave (THG explicit + IGN expired
+ * list direction + PocketTactics). Note: the milestone skipped 400K naming —
+ * the drop was THANKSFOR415K.
  */
 export interface GameCode {
   code: string;
@@ -15,17 +17,45 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-09-05";
+export const CODES_LAST_CHECKED = "2026-09-11";
 
 export const CODES: GameCode[] = [
   {
-    // 350K-likes milestone (dropped ~Aug 29). 2026-09-03: confirmed active by
-    // 5 sources — IGN (Sep 1, tests in-game), tryhardguides, pcgamesn,
-    // progameguides, allthings.how. Promoted unconfirmed → active.
+    // 415K-likes milestone (the 400K naming was skipped). 2026-09-11:
+    // 3-source — TryHardGuides (Sep 6), RadioTimes (has reward values),
+    // YouTube creator video ("four new working money codes").
+    code: "THANKSFOR415K",
+    reward: "25,000 Cash",
+    status: "active",
+    note: "Likes milestone — richest code to date.",
+  },
+  {
+    // Sep 10 update batch. Name implies a new map — content unverified.
+    code: "NEWMAP",
+    reward: "15,000 Cash",
+    status: "active",
+    note: "Dropped with the Sep 10 update (name suggests a new map).",
+  },
+  {
+    code: "VECTOR",
+    reward: "15,000 Cash",
+    status: "active",
+    note: "Dropped with the Sep 10 update.",
+  },
+  {
+    // Creator code, same pattern as SINCEROWASHERE (ImSincero).
+    code: "TECZWASHERE",
+    reward: "10,000 Cash",
+    status: "active",
+    note: "Creator code (TEGZ), same pattern as SINCEROWASHERE.",
+  },
+  {
+    // 2026-09-11: retired in the Sep 10 update wave — THG (Sep 6) lists it
+    // expired, IGN's expired list starts with it, PocketTactics confirms
+    // direction. Was the 350K-likes milestone code.
     code: "THANKSFOR350K",
     reward: "20,000 Cash",
-    status: "active",
-    note: "IGN (tested) says 20,000 Cash; PCGamesN lists 10K.",
+    status: "expired",
   },
   {
     // 2026-09-04: disagreement resolved toward expired — IGN (Sep 1, in-game

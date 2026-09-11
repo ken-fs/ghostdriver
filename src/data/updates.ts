@@ -15,7 +15,7 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-09-05";
+export const UPDATES_LAST_CHECKED = "2026-09-11";
 
 /**
  * Verified cadence: updates land roughly weekly, Fridays ~2:00 PM ET, and each
@@ -25,15 +25,26 @@ export const UPDATES_LAST_CHECKED = "2026-09-05";
  * (games API), contents unverified.
  */
 export const UPDATE_CADENCE = {
-  rhythm: "Weekly — new updates land on Fridays around 2:00 PM ET.",
-  currentEvent: "None running — the 'New Limited Cars!' event ended Sep 5.",
-  nextExpected: "Next weekly update around Friday, Sep 11, 2026, ~2:00 PM ET.",
+  rhythm: "Weekly — new updates land around Fridays ~2:00 PM ET (this week's landed a day early, Thursday ~4:30 PM ET).",
+  currentEvent: "A client update landed Sep 10 with a 4-code drop (incl. NEWMAP — a new map is implied but unverified); no event page live yet.",
+  nextExpected: "Next weekly update around Friday, Sep 18, 2026, ~2:00 PM ET.",
 } as const;
 
-/** Likes milestone the next code is expected at (250K and 350K both dropped codes). */
-export const NEXT_CODE_MILESTONE = 400_000;
+/** Likes milestone to watch for the next code (250K/350K/415K all dropped codes). */
+export const NEXT_CODE_MILESTONE = 450_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
+  {
+    date: "2026-09-11",
+    title: "Update + 4-code drop (landed a day early)",
+    items: [
+      "Game client updated Sep 10, ~4:31 PM ET (Roblox games API) — a day ahead of the usual Friday rhythm.",
+      "Four new codes verified by 3 sources (TryHardGuides, RadioTimes, creator video): THANKSFOR415K (25,000 Cash — the 415K-likes milestone, skipping 400K naming), NEWMAP (15,000), VECTOR (15,000), TECZWASHERE (10,000, creator code).",
+      "THANKSFOR350K retired in the same wave.",
+      "NEWMAP's name implies a new map; patch contents beyond the codes are unverified. Insider Gaming's roster shows a new 'Granadino Tocinero GT2' ($1.6M) — single source, not yet in our roster.",
+    ],
+    source: "Roblox games API + TryHardGuides + RadioTimes + creator video",
+  },
   {
     date: "2026-09-04",
     title: "Weekly build lands, event ends",
