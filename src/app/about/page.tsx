@@ -55,7 +55,35 @@ export default function About() {
           </li>
         </ul>
         <p className="mt-4 text-dim">
-          {SITE.name} is maintained by {SITE.game} players. Spotted something wrong?{" "}
+          Codes are re-verified daily, game stats refresh automatically from
+          Roblox&apos;s public data, and every content page carries a dated stamp.
+        </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How we handle disagreements
+        </Marquee>
+        <p className="mt-4 text-dim">
+          Code sites constantly contradict each other - one says a code works, another
+          says it&apos;s dead. Our rule: a code is only &ldquo;working&rdquo; when
+          independent sources agree, and when they split we publish the split itself,
+          not a guess. Real examples from our log: THANKSFOR250K sat in
+          &ldquo;unconfirmed&rdquo; for days until IGN (in-game tested), GameRant and
+          Dexerto all landed on expired - only then did we move it. When the Sep 10
+          update dropped four codes at once, we held publication until a second and
+          third source (RadioTimes + creator footage) confirmed names and rewards.
+        </p>
+        <p className="mt-4 text-dim">
+          The same discipline covers the car roster: every price and stat is confirmed
+          from two independent published sources before it appears, and community
+          nicknames that aren&apos;t the real in-game names get dropped, not repeated.
+          Anything we can&apos;t confirm is marked &ldquo;check in-game&rdquo; - a smaller,
+          honest page beats a bigger invented one.
+        </p>
+        <p className="mt-4 text-dim">
+          {SITE.name} is maintained by {SITE.editor} ({SITE.editorRole.toLowerCase()})
+          with help from {SITE.game} players. Spotted something wrong?{" "}
           <a href={`mailto:${SITE.contactEmail}`}>Tell us</a> and we&apos;ll fix it.
         </p>
       </HudPanel>

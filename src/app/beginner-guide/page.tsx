@@ -75,7 +75,9 @@ export default function BeginnerGuide() {
           </li>
           <li>
             • <span className="text-fg">Drift / traction control is a toggle</span> in the
-            UI, not a separate key — turn it off for grippier handling while you learn.
+            UI, not a separate key — turn it off for grippier handling while you learn,
+            then read the <Link href="/drift/">drift guide</Link> when you&apos;re ready to
+            slide.
           </li>
           <li>
             • <span className="text-fg">Upgrades are level-gated.</span> Tuning stages

@@ -22,6 +22,7 @@ const TIPS = [
   {
     h: "Keep your speed up",
     p: "Higher speed = bigger multipliers on each near-miss. Use Shift to drift around slow clusters instead of braking to a crawl.",
+    link: { href: "/drift/", label: "Drift guide" },
   },
   {
     h: "Do your daily & weekly quests",

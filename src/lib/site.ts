@@ -11,6 +11,9 @@ export const SITE = {
   tagline: "Working codes, best cars & cash guides for Roblox Ghost Driver.",
   // TODO(user): set up Cloudflare Email Routing so this address forwards to you.
   contactEmail: "contact@ghostdriver.net",
+  /** Site editor - E-E-A-T bylines (VerifiedStamp) and Article schema author. */
+  editor: "Ken Lee",
+  editorRole: "Editor & player-verifier",
 } as const;
 
 /** Primary nav — kept in one place so header/footer/sitemap stay in sync. */
@@ -19,6 +22,7 @@ export const NAV: { href: string; label: string }[] = [
   { href: "/cars/", label: "Cars" },
   { href: "/tier-list/", label: "Tier List" },
   { href: "/cash/", label: "Cash Guide" },
+  { href: "/drift/", label: "Drift" },
   { href: "/beginner-guide/", label: "Beginner Guide" },
   { href: "/updates/", label: "Updates" },
   { href: "/events/", label: "Events" },
