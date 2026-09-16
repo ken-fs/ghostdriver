@@ -8,6 +8,12 @@
  * 20:31 UTC. THANKSFOR350K retired the same wave (THG explicit + IGN expired
  * list direction + PocketTactics). Note: the milestone skipped 400K naming —
  * the drop was THANKSFOR415K.
+ * Update (2026-09-16): THANKSFOR447K confirmed active — GameRant (September
+ * list, marked NEW) + two creator redemption videos (ItsChalls Sep 14,
+ * LRo8zOX9guc). Amount unconfirmed (creator estimated ~25K Cash). REVIVE
+ * added as unconfirmed — GameRant NEW + one creator redemption, but
+ * GameRant's list still carries settled-expired codes, so awaiting a
+ * cleaner second source.
  */
 export interface GameCode {
   code: string;
@@ -17,9 +23,19 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-09-11";
+export const CODES_LAST_CHECKED = "2026-09-16";
 
 export const CODES: GameCode[] = [
+  {
+    // 447K-likes milestone (400K naming skipped, same as 415K). 2026-09-16:
+    // confirmed active — GameRant (September, NEW) + creator redemption
+    // videos ItsChalls (Sep 14) and LRo8zOX9guc. First flagged unconfirmed
+    // in the Sep 16 patrol; GameRant was the second source.
+    code: "THANKSFOR447K",
+    reward: "Cash",
+    status: "active",
+    note: "Likes milestone. Amount unconfirmed — a creator redemption suggested ~25,000 Cash.",
+  },
   {
     // 415K-likes milestone (the 400K naming was skipped). 2026-09-11:
     // 3-source — TryHardGuides (Sep 6), RadioTimes (has reward values),
@@ -48,6 +64,16 @@ export const CODES: GameCode[] = [
     reward: "10,000 Cash",
     status: "active",
     note: "Creator code (TEGZ), same pattern as SINCEROWASHERE.",
+  },
+  {
+    // 2026-09-16: surfaced in GameRant's September list (NEW) + one creator
+    // redemption video (LRo8zOX9guc, ~25K Cash estimated). GameRant still
+    // lists settled-expired codes (THANKSFOR1MIL/SORRYFORLATE), so this
+    // stays unconfirmed until RadioTimes/IGN/THG corroborates.
+    code: "REVIVE",
+    reward: "Cash",
+    status: "unconfirmed",
+    note: "Surfaced mid-Sep 2026 — GameRant (NEW) + one creator redemption; amount unconfirmed (~25,000 Cash est.).",
   },
   {
     // 2026-09-11: retired in the Sep 10 update wave — THG (Sep 6) lists it
