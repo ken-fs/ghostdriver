@@ -4,6 +4,7 @@ import { CopyButton } from "@/components/CopyButton";
 import { CODES, CODES_LAST_CHECKED, REDEEM_STEPS } from "@/data/codes";
 import { SITE } from "@/lib/site";
 import { buildMeta } from "@/lib/meta";
+import { CODE_LANGS } from "@/lib/i18n";
 
 const active = CODES.filter((c) => c.status === "active");
 const unconfirmed = CODES.filter((c) => c.status === "unconfirmed");
@@ -17,9 +18,10 @@ const MONTH_YEAR = new Date().toLocaleString("en-US", {
 });
 
 export const metadata = buildMeta({
-  title: `Ghost Driver Codes (${MONTH_YEAR}) — Free Cash`,
-  description: `All working ${SITE.game} codes for ${MONTH_YEAR}, verified ${CODES_LAST_CHECKED}. Redeem them for free Cash and skip the early grind.`,
+  title: `Ghost Driver Codes (${MONTH_YEAR}) — ${active.length} Working [Roblox]`,
+  description: `Updated ${CODES_LAST_CHECKED}: ${active.length} working Roblox ${SITE.game} codes, incl. ${active[0]?.code}. Free Cash — codes expire fast, redeem before they're gone.`,
   path: "/codes/",
+  languages: CODE_LANGS,
 });
 
 const faq = [

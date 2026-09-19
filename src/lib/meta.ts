@@ -9,15 +9,17 @@ export function buildMeta({
   title,
   description,
   path,
+  languages,
 }: {
   title: string;
   description: string;
   path: string; // e.g. "/codes/"
+  languages?: Record<string, string>; // hreflang alternates
 }): Metadata {
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...(languages ? { languages } : {}) },
     openGraph: {
       type: "website",
       siteName: SITE.name,
