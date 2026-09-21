@@ -7,31 +7,38 @@ import { SITE, NAV } from "@/lib/site";
 import { CODES, CODES_LAST_CHECKED } from "@/data/codes";
 import { GAME } from "@/data/game";
 
-// The homepage — not /codes — is what Google ranks for the "ghost driver codes"
-// query cluster (its biggest demand). Give it a codes-first, dated title so it
-// matches how players search ("ghost driver codes august 2026 / ... roblox") and
-// reads as fresh. `title.absolute` bypasses the layout's "%s — Ghost Driver Hub"
-// template. Build-time month+year stays current via the 6-hourly rebuild.
+// HOMEPAGE TARGETING — reversed 2026-09-21 on GSC evidence.
+//
+// A previous pass deliberately pointed the homepage at the "ghost driver codes"
+// cluster, on the theory that the homepage is what ranks for it. The data says
+// otherwise: over 28 days the homepage ranked for those queries at positions
+// 11.5 / 26.4 / 41.8 (40 queries, 213 impressions, 0 clicks) while the dedicated
+// /codes/ page sat at 8.9. Letting the homepage compete was actively losing the
+// cluster.
+//
+// So the homepage now targets the brand + hub intent, and /codes/ owns codes.
+// The codes block below stays as a preview with a link — internal links pass
+// authority, competing for the query does not.
 const MONTH_YEAR = new Date().toLocaleString("en-US", {
   month: "long",
   year: "numeric",
 });
 
 export const metadata: Metadata = {
-  title: { absolute: `Ghost Driver Codes (${MONTH_YEAR}) — Working Roblox Codes` },
-  description: `Working ${SITE.game} codes for ${MONTH_YEAR}, verified ${CODES_LAST_CHECKED}. Copy free Cash codes, plus the best cars, tier list and cash guides for Roblox ${SITE.game}.`,
+  title: { absolute: `${SITE.game} Guide — Cars, Tier List, Tuning & Cash` },
+  description: `Everything for Roblox ${SITE.game}: all 14 cars with verified stats, the tier list, tuning settings, drift builds and Cash routes — plus working codes.`,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: SITE.name,
     url: "/",
-    title: `${SITE.game} Codes (${MONTH_YEAR}) — Working Roblox Codes`,
+    title: `${SITE.game} Guide — Cars, Tier List, Tuning & Cash`,
     description: SITE.tagline,
     images: [{ url: "/og.png", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.game} Codes (${MONTH_YEAR}) — Working Roblox Codes`,
+    title: `${SITE.game} Guide — Cars, Tier List, Tuning & Cash`,
     description: SITE.tagline,
     images: ["/og.png"],
   },
@@ -143,12 +150,15 @@ export default function Home() {
 
       <div className="lane-divider" />
 
-      {/* Working codes teaser — the top reason people land here */}
+      {/* Codes teaser. Deliberately NOT the homepage's target query any more —
+          /codes/ owns that (see the header comment). This block keeps the dated
+          freshness signal on-page and links through, which is what the homepage
+          should be doing for this cluster. */}
       <section className="grid gap-4 md:grid-cols-3">
         <HudPanel className="md:col-span-2">
           <div className="flex items-center justify-between gap-3">
             <Marquee color="active" as="h2" className="text-xl">
-              <span className="pulse">●</span> Working Codes
+              <span className="pulse">●</span> Working Codes ({MONTH_YEAR})
             </Marquee>
             <Link href="/codes/" className="text-sm">
               All codes →

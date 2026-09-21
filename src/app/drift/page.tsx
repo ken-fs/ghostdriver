@@ -35,7 +35,7 @@ const DRIFT_FAQ = [
   },
   {
     q: "Can you tune cars for drifting?",
-    a: "The Aug 29, 2026 update added vehicle customization options, and tuning upgrades level-gate as you progress. Specific drift-tuning parts haven't been verified from 2+ sources yet - check the customization menu in-game for what's available on your car.",
+    a: "Yes, and it matters - but the speed tune and the drift tune pull in opposite directions. The popular all-gears-to-minimum setup is built for straight-line speed and makes a car harder to slide, because minimum gears and a stiff front end both fight the rear breaking loose. For drifting, leave the gears alone and keep the drivetrain RWD. The tuning guide covers both configurations.",
   },
 ];
 
@@ -106,7 +106,9 @@ export default function DriftPage() {
           Why it matters: Cash scales with speed and combo length - creators have shown
           200X+ swerve streaks. Braking resets neither, but the speed loss shrinks every
           payout after it. A drift keeps the number big. More on the earning side in the{" "}
-          <Link href="/cash/">cash guide</Link>.
+          <Link href="/cash/">cash guide</Link>, and for the other half of the setup see the{" "}
+          <Link href="/tuning/">tuning guide</Link> - the speed tune and the drift tune are
+          not the same configuration.
         </p>
       </HudPanel>
 
