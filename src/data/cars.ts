@@ -264,6 +264,48 @@ export const CARS: Car[] = [
   },
 ];
 
+/** Lookup by slug - used by the per-car detail pages at /cars/[slug]/. */
+export function getCar(slug: string): Car | undefined {
+  return CARS.find((c) => c.slug === slug);
+}
+
+/**
+ * Tuned top speeds demonstrated on camera by creators, keyed by slug.
+ * Sourced from the same runs the /tuning/ page cites. Only cars where a
+ * creator showed the result in-game appear here - absence means unmeasured,
+ * not "no tune exists".
+ */
+export const TUNED_SPEEDS: Record<string, { tuned: string; note: string }> = {
+  "wulfbrecht-rz7": {
+    tuned: "~400-430 km/h (250-267 mph)",
+    note: "The free starter car, with a V10 swap and the universal tune - creators call it the biggest free-car jump in the game.",
+  },
+  "kitsuni-lx": {
+    tuned: "~420 km/h (261 mph)",
+    note: "Launch control at 5,000 RPM plus an ultra heavy-duty long block.",
+  },
+  "trailhawk-helly": {
+    tuned: "~500 km/h (311 mph)",
+    note: "AWD with a race long block at stage 4 - described as a rocket.",
+  },
+  "voss-rt8": {
+    tuned: "~500 km/h (311 mph)",
+    note: "Quad turbo, twin charge, C16 fuel, ultra heavy-duty long block.",
+  },
+  "voss-rt10-tt": {
+    tuned: "~506 km/h (314 mph)",
+    note: "The GT3RS-class tune - AWD, quad turbo, max nitrous.",
+  },
+  "reinhardt-rt32": {
+    tuned: "~510 km/h (317 mph)",
+    note: "Twin-turbo V10 - creators call it the fastest car in the game in this build.",
+  },
+  "shelly-lz1": {
+    tuned: "325+ mph (523+ km/h)",
+    note: "The highest top speed shown on camera. AWD is required for the tune to hold.",
+  },
+};
+
 /** What we know qualitatively about how cars work (Gamepur-verified purchase flow). */
 export const CARS_KNOWN = {
   hasFreeStarter: true,

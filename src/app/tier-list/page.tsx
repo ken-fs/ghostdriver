@@ -80,11 +80,11 @@ export default function TierList() {
         <p className="text-lg">
           <span className="glow-active font-semibold">Quick answer:</span> the best
           value car in {SITE.game} is the{" "}
-          <Link href="/cars/#rangy-helly" className="text-fg font-semibold">
+          <Link href="/cars/rangy-helly/" className="text-fg font-semibold">
             Rangy Helly
           </Link>{" "}
           ($120,000 — 710 HP, AWD). The best car overall is the{" "}
-          <Link href="/cars/#voss-rt10-tt" className="text-fg font-semibold">
+          <Link href="/cars/voss-rt10-tt/" className="text-fg font-semibold">
             Voss RT10 TT
           </Link>{" "}
           ($760,000 — 215 mph, 2.6s 0-60).
@@ -104,9 +104,9 @@ export default function TierList() {
                 <ul className="mt-1 space-y-0.5">
                   {cars.map((c) => (
                     <li key={c.slug}>
-                      <a href={`#${c.slug}`} className="text-fg">
+                      <Link href={`/cars/${c.slug}/`} className="text-fg">
                         {c.name}
-                      </a>
+                      </Link>
                       <span className="text-sm text-dim">
                         {" "}
                         — {c.priceCash ? `$${nf.format(c.priceCash)}` : c.priceRobux ? `R$${nf.format(c.priceRobux)}` : "FREE"} · {c.topSpeedMph} mph · {c.hp} HP
@@ -173,7 +173,7 @@ export default function TierList() {
               </div>
             </dl>
             <p className="mt-3 text-sm">
-              <Link href={`/cars/#${c.slug}`}>Full stats on the cars list →</Link>
+              <Link href={`/cars/${c.slug}/`}>Full stats, tune and verdict →</Link>
             </p>
           </HudPanel>
         ))}

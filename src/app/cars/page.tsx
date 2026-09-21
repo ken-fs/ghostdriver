@@ -121,7 +121,9 @@ export default function CarsPage() {
             {CARS.map((c) => (
               <tr key={c.slug} id={c.slug} className="border-b border-lane align-top scroll-mt-20">
                 <td className="py-2 pr-3 font-medium text-fg">
-                  {c.name}
+                  <Link href={`/cars/${c.slug}/`} className="hover:underline">
+                    {c.name}
+                  </Link>
                   {c.limited && (
                     <span className="ml-2 hud-panel px-1.5 py-0.5 text-xs glow-taillight">
                       Limited
@@ -170,7 +172,8 @@ export default function CarsPage() {
           be tuned beyond their stock stats.
         </p>
         <p className="mt-3 text-dim">
-          Short on Cash? The <Link href="/cash/">cash guide</Link> shows the fastest
+          Tap any car name for its own page with the full stat sheet, the tuned top speed and
+          the buy verdict. Short on Cash? The <Link href="/cash/">cash guide</Link> shows the fastest
           farming loop, and the current <Link href="/codes/">codes</Link> hand you free
           Cash toward your first upgrade.
         </p>
