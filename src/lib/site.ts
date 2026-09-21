@@ -23,6 +23,7 @@ export const NAV: { href: string; label: string }[] = [
   { href: "/tier-list/", label: "Tier List" },
   { href: "/cash/", label: "Cash Guide" },
   { href: "/tuning/", label: "Tuning" },
+  { href: "/settings/", label: "Graphics" },
   { href: "/drift/", label: "Drift" },
   { href: "/beginner-guide/", label: "Beginner Guide" },
   { href: "/updates/", label: "Updates" },

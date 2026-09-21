@@ -216,6 +216,11 @@ export default function TuningPage() {
           tuned for speed and one left loose for drifting, rather than one car doing both
           badly.
         </p>
+        <p className="mt-3 text-sm text-dim">
+          Separately from performance, the game&apos;s visual settings are also worth a pass —
+          the <Link href="/settings/">graphics settings guide</Link> covers the recipe that makes
+          traffic readable at speed, which matters when your Cash depends on near-misses.
+        </p>
       </HudPanel>
 
       {/* Sources */}

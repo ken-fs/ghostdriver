@@ -113,6 +113,8 @@ export default function BeginnerGuide() {
           />
           <p className="mt-2 text-xs text-dim">
             Video: CHALLS on YouTube — money farming, leveling and settings walkthrough.
+            The written version of the settings half is in the{" "}
+            <Link href="/settings/">graphics settings guide</Link>.
           </p>
         </div>
       </section>
