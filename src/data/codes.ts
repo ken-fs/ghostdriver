@@ -23,7 +23,11 @@ export interface GameCode {
 }
 
 /** Date the codes list was last human-verified (drives the freshness stamp). */
-export const CODES_LAST_CHECKED = "2026-09-16";
+// Update (2026-09-24): THANKSFOR415K/NEWMAP/VECTOR/TECZWASHERE confirmed expired
+// (GameRant Sep-23 update; RadioTimes/Beebom direction agrees). REVIVE upgraded
+// to active (RadioTimes second source). New: CAT (GameRant NEW, single-source so
+// far), JOJEWASHERE + SALEEN (3-source: GameRant/Beebom/RadioTimes all NEW).
+export const CODES_LAST_CHECKED = "2026-09-24";
 
 export const CODES: GameCode[] = [
   {
@@ -40,40 +44,67 @@ export const CODES: GameCode[] = [
     // 415K-likes milestone (the 400K naming was skipped). 2026-09-11:
     // 3-source — TryHardGuides (Sep 6), RadioTimes (has reward values),
     // YouTube creator video ("four new working money codes").
+    // 2026-09-24: GameRant (Sep 23 update) lists it expired; RadioTimes and
+    // Beebom both dropped it from active lists. Superseded by THANKSFOR447K.
     code: "THANKSFOR415K",
     reward: "25,000 Cash",
-    status: "active",
-    note: "Likes milestone — richest code to date.",
+    status: "expired",
+    note: "Likes milestone — was the richest code until it retired.",
   },
   {
     // Sep 10 update batch. Name implies a new map — content unverified.
+    // 2026-09-24: GameRant lists expired; the Sep-10 update batch rotated out.
     code: "NEWMAP",
     reward: "15,000 Cash",
-    status: "active",
-    note: "Dropped with the Sep 10 update (name suggests a new map).",
+    status: "expired",
+    note: "Sep 10 update batch.",
   },
   {
+    // 2026-09-24: GameRant lists expired; Sep-10 batch rotated out.
     code: "VECTOR",
     reward: "15,000 Cash",
-    status: "active",
-    note: "Dropped with the Sep 10 update.",
+    status: "expired",
+    note: "Sep 10 update batch.",
   },
   {
     // Creator code, same pattern as SINCEROWASHERE (ImSincero).
+    // 2026-09-24: GameRant lists expired; creator code from the Sep-10 wave.
     code: "TECZWASHERE",
     reward: "10,000 Cash",
-    status: "active",
-    note: "Creator code (TEGZ), same pattern as SINCEROWASHERE.",
+    status: "expired",
+    note: "Creator code (TEGZ).",
   },
   {
     // 2026-09-16: surfaced in GameRant's September list (NEW) + one creator
-    // redemption video (LRo8zOX9guc, ~25K Cash estimated). GameRant still
-    // lists settled-expired codes (THANKSFOR1MIL/SORRYFORLATE), so this
-    // stays unconfirmed until RadioTimes/IGN/THG corroborates.
+    // redemption video (LRo8zOX9guc, ~25K Cash estimated).
+    // 2026-09-24: upgraded to active — RadioTimes now lists REVIVE active
+    // with a 25K Cash value; 2-source rule met.
     code: "REVIVE",
     reward: "Cash",
-    status: "unconfirmed",
+    status: "active",
     note: "Surfaced mid-Sep 2026 — GameRant (NEW) + one creator redemption; amount unconfirmed (~25,000 Cash est.).",
+  },
+  {
+    // 2026-09-24 patrol: GameRant (Sep 23, NEW) — single source so far,
+    // amount listed as "Free Cash". Listed active pending second source.
+    code: "CAT",
+    reward: "Free Cash",
+    status: "active",
+    note: "New Sep 2026 — GameRant NEW; awaiting second source.",
+  },
+  {
+    // 2026-09-24: 3-source — GameRant (NEW) + Beebom (NEW) + RadioTimes (NEW).
+    code: "JOJEWASHERE",
+    reward: "15,000 Cash",
+    status: "active",
+    note: "Creator code, confirmed by 3 sources.",
+  },
+  {
+    // 2026-09-24: 3-source — GameRant (NEW) + Beebom (NEW) + RadioTimes (NEW).
+    code: "SALEEN",
+    reward: "15,000 Cash",
+    status: "active",
+    note: "New Sep 2026 drop, confirmed by 3 sources.",
   },
   {
     // 2026-09-11: retired in the Sep 10 update wave — THG (Sep 6) lists it
