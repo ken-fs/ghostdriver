@@ -27,18 +27,32 @@ export interface GameCode {
 // (GameRant Sep-23 update; RadioTimes/Beebom direction agrees). REVIVE upgraded
 // to active (RadioTimes second source). New: CAT (GameRant NEW, single-source so
 // far), JOJEWASHERE + SALEEN (3-source: GameRant/Beebom/RadioTimes all NEW).
-export const CODES_LAST_CHECKED = "2026-09-24";
+// Update (2026-10-01): THANKSFOR480K added (Beebom Oct 1 NEW + TryHardGuides
+// Sep 28 NEW; the 447K → 480K jump again skipped round naming). THANKSFOR447K,
+// REVIVE and JOJEWASHERE → expired (Beebom dropped them, THG lists expired).
+// CAT → expired (no source carries it any more). SALEEN split 1:1 (Beebom
+// active, THG expired) — kept active, re-check next patrol.
+export const CODES_LAST_CHECKED = "2026-10-01";
 
 export const CODES: GameCode[] = [
+  {
+    // 480K-likes milestone. 2026-10-01: 2-source — Beebom (Oct 1, NEW) +
+    // TryHardGuides (Sep 28, NEW). Supersedes THANKSFOR447K.
+    code: "THANKSFOR480K",
+    reward: "20,000 Cash",
+    status: "active",
+    note: "Likes milestone — the newest and richest working code.",
+  },
   {
     // 447K-likes milestone (400K naming skipped, same as 415K). 2026-09-16:
     // confirmed active — GameRant (September, NEW) + creator redemption
     // videos ItsChalls (Sep 14) and LRo8zOX9guc. First flagged unconfirmed
     // in the Sep 16 patrol; GameRant was the second source.
+    // 2026-10-01: expired — Beebom dropped it, THG lists it expired.
     code: "THANKSFOR447K",
     reward: "Cash",
-    status: "active",
-    note: "Likes milestone. Amount unconfirmed — a creator redemption suggested ~25,000 Cash.",
+    status: "expired",
+    note: "Likes milestone — superseded by THANKSFOR480K.",
   },
   {
     // 415K-likes milestone (the 400K naming was skipped). 2026-09-11:
@@ -79,28 +93,33 @@ export const CODES: GameCode[] = [
     // redemption video (LRo8zOX9guc, ~25K Cash estimated).
     // 2026-09-24: upgraded to active — RadioTimes now lists REVIVE active
     // with a 25K Cash value; 2-source rule met.
+    // 2026-10-01: expired — Beebom dropped it, THG lists it expired.
     code: "REVIVE",
     reward: "Cash",
-    status: "active",
+    status: "expired",
     note: "Surfaced mid-Sep 2026 — GameRant (NEW) + one creator redemption; amount unconfirmed (~25,000 Cash est.).",
   },
   {
     // 2026-09-24 patrol: GameRant (Sep 23, NEW) — single source so far,
     // amount listed as "Free Cash". Listed active pending second source.
+    // 2026-10-01: expired — never got a second source and no current list
+    // (Beebom / THG, active or expired) carries it any more.
     code: "CAT",
     reward: "Free Cash",
-    status: "active",
-    note: "New Sep 2026 — GameRant NEW; awaiting second source.",
+    status: "expired",
+    note: "Sep 2026 single-source code; no longer listed anywhere.",
   },
   {
     // 2026-09-24: 3-source — GameRant (NEW) + Beebom (NEW) + RadioTimes (NEW).
+    // 2026-10-01: expired — Beebom dropped it, THG lists it expired.
     code: "JOJEWASHERE",
     reward: "15,000 Cash",
-    status: "active",
-    note: "Creator code, confirmed by 3 sources.",
+    status: "expired",
+    note: "Creator code.",
   },
   {
     // 2026-09-24: 3-source — GameRant (NEW) + Beebom (NEW) + RadioTimes (NEW).
+    // 2026-10-01: split — Beebom still active, THG expired. Kept active (1:1).
     code: "SALEEN",
     reward: "15,000 Cash",
     status: "active",
