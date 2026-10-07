@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Chakra_Petch, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { SiteNav, SiteFooter } from "@/components/ui";
 import { AdsterraGlobal } from "@/components/ads";
 
-const chakra = Chakra_Petch({
-  weight: ["500", "600", "700"],
-  subsets: ["latin"],
+// Fonts are self-hosted (src/fonts, OFL). next/font/google downloads them during the build,
+// and when that download flakes on Cloudflare's builders the whole build fails
+// ("Can't resolve '@vercel/turbopack-next/internal/font/google/font'", 2026-10-06).
+const chakra = localFont({
+  src: [
+    { path: "../fonts/chakra-petch-latin-500-normal.woff2", weight: "500", style: "normal" },
+    { path: "../fonts/chakra-petch-latin-600-normal.woff2", weight: "600", style: "normal" },
+    { path: "../fonts/chakra-petch-latin-700-normal.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-chakra",
   display: "swap",
 });
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../fonts/inter-latin-wght-normal.woff2",
+  weight: "100 900",
   variable: "--font-inter",
   display: "swap",
 });
