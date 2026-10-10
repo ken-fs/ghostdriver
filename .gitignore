@@ -32,3 +32,6 @@ next-env.d.ts
 /外链/
 /OPS-PROGRESS.md
 /ghostdriver-audit/
+
+# 构建期生成的部署标记（site-hygiene 比对用，不进库）
+/public/.well-known/

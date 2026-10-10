@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "prebuild": "node scripts/write-deploy-marker.mjs",
     "start": "next start",
     "lint": "eslint",
     "deploy": "next build && wrangler deploy"
