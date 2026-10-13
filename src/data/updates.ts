@@ -15,25 +15,46 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-09-11";
+export const UPDATES_LAST_CHECKED = "2026-10-13";
 
 /**
- * Verified cadence: updates land roughly weekly, Fridays ~2:00 PM ET, and each
- * event runs one week (Aug 14→21, Aug 21→28, Aug 29→Sep 5 — Roblox event pages).
- * 2026-09-05: the "New Limited Cars!" event has ended and no new event is
- * running on the Roblox event page; a client build did land Sep 4 ~1:20 PM ET
- * (games API), contents unverified.
+ * Verified cadence: updates land on a near-weekly rhythm. Through August the
+ * builds landed Fridays ~2:00 PM ET; since October the two verified builds
+ * (Oct 5, Oct 12) landed Mondays, early afternoon ET. The game renames its
+ * listing after the headline feature, which is the quickest read on what
+ * shipped (currently "[🗺️NEW MAP] Ghost Driver [ALPHA]", build Oct 12
+ * 17:47 UTC = 1:47 PM ET per the Roblox games API).
  */
 export const UPDATE_CADENCE = {
-  rhythm: "Weekly — new updates land around Fridays ~2:00 PM ET (this week's landed a day early, Thursday ~4:30 PM ET).",
-  currentEvent: "A client update landed Sep 10 with a 4-code drop (incl. NEWMAP — a new map is implied but unverified); no event page live yet.",
-  nextExpected: "Next weekly update around Friday, Sep 18, 2026, ~2:00 PM ET.",
+  rhythm: "Near-weekly — the two October builds (Oct 5 and Oct 12) landed Mondays, ~2:00 PM ET; before that the rhythm was Fridays.",
+  currentEvent: "The Tokyo City map wave — a new map plus limited cars, live since Oct 10–12 (three independent creator videos; the listing itself is renamed [NEW MAP]).",
+  nextExpected: "within the coming week — the October rhythm has been one build per week (Oct 5, then Oct 12).",
 } as const;
 
-/** Likes milestone to watch for the next code (250K/350K/415K all dropped codes). */
-export const NEXT_CODE_MILESTONE = 450_000;
+/** Likes milestone to watch for the next code (415K/447K/480K all dropped codes; likes passed 520K on Oct 13). */
+export const NEXT_CODE_MILESTONE = 500_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
+  {
+    date: "2026-10-12",
+    title: "Tokyo City map wave (the [NEW MAP] build)",
+    items: [
+      "Game client updated Oct 12, 17:47 UTC (1:47 PM ET) and the listing was renamed '[🗺️NEW MAP] Ghost Driver [ALPHA]' (Roblox games API).",
+      "Tokyo City map confirmed by three independent creator videos spanning Oct 10–12 — the wave is the map plus limited cars.",
+      "Cars named in that coverage include a Nissan GT-R R35 and a Bugatti Veyron; a new limited car also shipped (creator coverage; not yet added to the roster page until its in-game name and stats are confirmed).",
+    ],
+    source: "Roblox games API + JoJewyd (Oct 10) + two further creator videos (Oct 10, Oct 12)",
+  },
+  {
+    date: "2026-10-05",
+    title: "Car + Trials update with a 2x cash window",
+    items: [
+      "Two independent creator videos posted Oct 5 covering the same drop: a new car, Trials content, and a 2x Cash event window.",
+      "A third creator video (Oct 6) covers a newly added secret car from the same stretch.",
+      "No codes verified with this wave (the next verified code drop remains the Sep 10 four-code batch).",
+    ],
+    source: "Two independent creator videos (Oct 5) + one follow-up (Oct 6)",
+  },
   {
     date: "2026-09-11",
     title: "Update + 4-code drop (landed a day early)",

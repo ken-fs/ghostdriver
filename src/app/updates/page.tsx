@@ -24,11 +24,11 @@ const UPDATES_FAQ = [
   },
   {
     q: "When is the next Ghost Driver code?",
-    a: "The 415K-likes milestone just paid out — THANKSFOR415K dropped with the Sep 10 update alongside three more codes. The next likes milestone to watch is 450K, and new codes also arrive alongside weekly updates.",
+    a: "THANKSFOR480K is the newest code — the 480K-likes milestone, which the game's naming has been skipping round numbers for (415K, 447K, 480K). Likes passed 520K by Oct 13, so a 500K-class milestone code could land with any weekly update; new codes also arrive alongside updates — the last verified batch was four codes with the Sep 10 build.",
   },
   {
     q: "What was in the last Ghost Driver update?",
-    a: "The Sep 10, 2026 update (landed a day earlier than the usual Friday rhythm) shipped a 4-code drop: THANKSFOR415K, NEWMAP, VECTOR and TECZWASHERE. NEWMAP's name implies a new map; full patch contents are still being verified.",
+    a: "The Oct 12 build (the [🗺️NEW MAP] rename) is the Tokyo City map wave — a new map plus limited cars, confirmed by three independent creator videos from Oct 10–12, with a Nissan GT-R R35 and a Bugatti Veyron named in that coverage. The build before it (Oct 5) added a car, Trials content and a 2x Cash window.",
   },
 ];
 
@@ -110,7 +110,8 @@ export default function Updates() {
         <p className="mt-3 text-dim">
           Code watch: likes are at {nf.format(GAME.traction.likes)} — the{" "}
           <span className="text-fg">{nf.format(NEXT_CODE_MILESTONE)}-likes</span>{" "}
-          milestone is already crossed, and both 250K and 350K dropped a code, so a
+          milestone is already crossed, and every recent milestone (415K, 447K, 480K)
+          dropped a code, so a
           new code could land any day (likely with the weekly update). When it does
           it goes straight to the <Link href="/codes/">codes page</Link>.
         </p>

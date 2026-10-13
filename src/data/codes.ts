@@ -32,7 +32,10 @@ export interface GameCode {
 // REVIVE and JOJEWASHERE → expired (Beebom dropped them, THG lists expired).
 // CAT → expired (no source carries it any more). SALEEN split 1:1 (Beebom
 // active, THG expired) — kept active, re-check next patrol.
-export const CODES_LAST_CHECKED = "2026-10-01";
+// 2026-10-13: 全部四个码源重新比对（patrol 报告 reports/patrol-2026-10-13.md）：
+// Beebom（10-12）新增孤证 hustleup / froppilive，其余三源未出现 → 按双源规则不收录；
+// SALEEN Beebom 转 expired（1:2），暂维持 active。两个在更码本次比对无变化。
+export const CODES_LAST_CHECKED = "2026-10-13";
 
 export const CODES: GameCode[] = [
   {
