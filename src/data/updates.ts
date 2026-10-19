@@ -15,26 +15,39 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-10-13";
+export const UPDATES_LAST_CHECKED = "2026-10-19";
 
 /**
  * Verified cadence: updates land on a near-weekly rhythm. Through August the
- * builds landed Fridays ~2:00 PM ET; since October the two verified builds
- * (Oct 5, Oct 12) landed Mondays, early afternoon ET. The game renames its
+ * builds landed Fridays ~2:00 PM ET; since October the three verified builds
+ * (Oct 5, Oct 12, Oct 17) landed Mondays, early afternoon ET. The game renames its
  * listing after the headline feature, which is the quickest read on what
- * shipped (currently "[🗺️NEW MAP] Ghost Driver [ALPHA]", build Oct 12
- * 17:47 UTC = 1:47 PM ET per the Roblox games API).
+ * shipped (currently "[NEW LIMITED] Ghost Driver [ALPHA]", build Oct 17
+ * 19:34 UTC = 3:34 PM ET per the Roblox games API).
  */
 export const UPDATE_CADENCE = {
-  rhythm: "Near-weekly — the two October builds (Oct 5 and Oct 12) landed Mondays, ~2:00 PM ET; before that the rhythm was Fridays.",
-  currentEvent: "The Tokyo City map wave — a new map plus limited cars, live since Oct 10–12 (three independent creator videos; the listing itself is renamed [NEW MAP]).",
-  nextExpected: "within the coming week — the October rhythm has been one build per week (Oct 5, then Oct 12).",
+  rhythm: "Near-weekly — the three October builds (Oct 5, Oct 12, Oct 17) landed Mondays, ~2:00 PM ET; before that the rhythm was Fridays.",
+  currentEvent: "The Oct 17 [NEW LIMITED] build — the limited Varnstrom Vildra hypercar (7 days only) plus the permanent Helly Mamba ($450,000) with an exclusive wide body kit.",
+  nextExpected: "within the coming week — October has shipped one build per week (Oct 5, Oct 12, Oct 17).",
 } as const;
 
 /** Likes milestone to watch for the next code (415K/447K/480K all dropped codes; likes passed 520K on Oct 13). */
 export const NEXT_CODE_MILESTONE = 500_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
+  {
+    date: "2026-10-17",
+    title: "[NEW LIMITED] build — Varnstrom Vildra limited hypercar + Helly Mamba permanent",
+    items: [
+      "Game client updated Oct 17, 19:34 UTC (3:34 PM ET) and the listing was renamed '[NEW LIMITED] Ghost Driver [ALPHA]' (Roblox games API).",
+      "Official Discord #updates announcement (Release 10/17/2026, read on screen in JoJewyd's Oct 17 video): new LIMITED VEHICLE — VARNSTROM VILDRA, a hypercar available 7 DAYS ONLY (off sale ~Oct 24); new PERMANENT VEHICLE — HELLY MAMBA, available to everyone and comes with an exclusive Wide Body kit.",
+      "Helly Mamba price $450,000 confirmed in-game by two independent creators (Cluck's purchase + JoJewyd's buy dialog).",
+      "Also per the announcement: performance improvements (including faster car spawning), a small UI refresh (HUD buttons, dealership UI), and more bug fixes.",
+      "No new codes with this wave — Cluck checked in-game after the update; the only active code remains THANKSFOR480K.",
+      "Both new cars are held out of the roster page for now: in-game names and the Helly Mamba price are confirmed, but their stat cards (HP / top speed / 0-60) are not yet in any published source.",
+    ],
+    source: "Roblox games API + official Discord #updates (read in JoJewyd, Oct 17) + Cluck (Oct 17)",
+  },
   {
     date: "2026-10-12",
     title: "Tokyo City map wave (the [NEW MAP] build)",

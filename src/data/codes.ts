@@ -35,7 +35,10 @@ export interface GameCode {
 // 2026-10-13: 全部四个码源重新比对（patrol 报告 reports/patrol-2026-10-13.md）：
 // Beebom（10-12）新增孤证 hustleup / froppilive，其余三源未出现 → 按双源规则不收录；
 // SALEEN Beebom 转 expired（1:2），暂维持 active。两个在更码本次比对无变化。
-export const CODES_LAST_CHECKED = "2026-10-13";
+// 2026-10-19: SALEEN → expired（patrol 报告 reports/patrol-2026-10-19.md）——
+// Beebom（10-12）+ TryHardGuides（09-28）双源 expired；RadioTimes（10-01）陈旧不采信。
+// hustleup / froppilive 复核仍只有 Beebom 单源（均 NEW、$20,000 Cash），继续不收录。
+export const CODES_LAST_CHECKED = "2026-10-19";
 
 export const CODES: GameCode[] = [
   {
@@ -123,9 +126,11 @@ export const CODES: GameCode[] = [
   {
     // 2026-09-24: 3-source — GameRant (NEW) + Beebom (NEW) + RadioTimes (NEW).
     // 2026-10-01: split — Beebom still active, THG expired. Kept active (1:1).
+    // 2026-10-19: expired — Beebom (Oct 12) + TryHardGuides (Sep 28) both list
+    // it expired; RadioTimes (Oct 1) is stale and not counted.
     code: "SALEEN",
     reward: "15,000 Cash",
-    status: "active",
+    status: "expired",
     note: "New Sep 2026 drop, confirmed by 3 sources.",
   },
   {

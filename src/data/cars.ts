@@ -38,9 +38,12 @@ export interface Car {
   bestFor: string;
 }
 
-export const CARS_LAST_CHECKED = "2026-09-03";
+export const CARS_LAST_CHECKED = "2026-10-19";
 
-/** True while the Aug 29 – Sep 5 event's limited car(s) remain unverified by 2+ sources. */
+/** True while recent drops lack a published stat table: the Oct 17 pair (limited Varnstrom Vildra +
+ * permanent Helly Mamba, $450K) has in-game names + price confirmed via the official Discord
+ * announcement, but HP / top speed / 0-60 are not in any published source yet — same bar as the
+ * Tokyo City wave cars above. */
 export const CARS_ROSTER_PARTIAL = true;
 
 export const CARS: Car[] = [
