@@ -35,3 +35,6 @@ next-env.d.ts
 
 # 构建期生成的部署标记（site-hygiene 比对用，不进库）
 /public/.well-known/
+
+# pnpm 11 提示生成的占位文件（allowBuilds 占位文本会让 install 直接失败）。本仓库用 npm。
+pnpm-workspace.yaml

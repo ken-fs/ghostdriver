@@ -38,7 +38,12 @@ export interface GameCode {
 // 2026-10-19: SALEEN → expired（patrol 报告 reports/patrol-2026-10-19.md）——
 // Beebom（10-12）+ TryHardGuides（09-28）双源 expired；RadioTimes（10-01）陈旧不采信。
 // hustleup / froppilive 复核仍只有 Beebom 单源（均 NEW、$20,000 Cash），继续不收录。
-export const CODES_LAST_CHECKED = "2026-10-19";
+// 2026-10-21: 找到 TryHardGuides 的可用抓取路径（站点前台是 BigScoots JS 挑战，403；
+// 但 WordPress REST API 直出正文：tryhardguides.com/wp-json/wp/v2/posts?slug=ghost-driver-codes）。
+// 其 10-19 更新把 hustleup / froppilive 列入 ACTIVE（NEW）→ 与 Beebom 10-12 构成双源，收录。
+// 同一页面把 Thanksfor480k 列入 expired（单源），按「≥2 源 expired 才退役」维持 active 并标注分歧。
+// 另 100MIL 为该页新列，但目前只有 THG 一个源，暂不收录。
+export const CODES_LAST_CHECKED = "2026-10-21";
 
 export const CODES: GameCode[] = [
   {
@@ -47,7 +52,7 @@ export const CODES: GameCode[] = [
     code: "THANKSFOR480K",
     reward: "20,000 Cash",
     status: "active",
-    note: "Likes milestone — the newest and richest working code.",
+    note: "Likes milestone — the richest working code. TryHardGuides (Oct 19) has moved it to expired, but Beebom (Oct 12) and PocketTactics still list it active and no second source confirms the expiry — if a redeem fails, this one is the likely reason.",
   },
   {
     // 447K-likes milestone (400K naming skipped, same as 415K). 2026-09-16:
@@ -173,6 +178,21 @@ export const CODES: GameCode[] = [
     code: "SORRYFORLATE",
     reward: "10,000 Cash",
     status: "expired",
+  },
+  {
+    // 2026-10-21: Beebom (Oct 12, NEW) + TryHardGuides (Oct 19, NEW) — two independent
+    // sources, so it clears the 2-source rule after sitting as a Beebom-only single.
+    code: "hustleup",
+    reward: "20,000 Cash",
+    status: "active",
+    note: "Added with the Oct 12 Tokyo City wave.",
+  },
+  {
+    // 2026-10-21: same pair of sources as hustleup — Beebom (Oct 12) + TryHardGuides (Oct 19).
+    code: "froppilive",
+    reward: "20,000 Cash",
+    status: "active",
+    note: "Creator-handle code (Froppi) that shipped alongside hustleup.",
   },
 ];
 
