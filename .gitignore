@@ -37,4 +37,3 @@ next-env.d.ts
 /public/.well-known/
 
 # pnpm 11 提示生成的占位文件（allowBuilds 占位文本会让 install 直接失败）。本仓库用 npm。
-pnpm-workspace.yaml

@@ -1,0 +1,9 @@
+# pnpm 11 refuses to install (ERR_PNPM_IGNORED_BUILDS) until every dependency with a
+# build script is explicitly allowed or denied. None is needed here: esbuild / workerd
+# ship prebuilt platform binaries, unrs-resolver is lint-only. Keep real true/false
+# values — the "set this to true or false" placeholder pnpm writes broke a Cloudflare
+# build on 2026-09-24 (ghostdriver).
+allowBuilds:
+  esbuild: false
+  unrs-resolver: false
+  workerd: false
