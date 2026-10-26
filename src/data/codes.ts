@@ -43,16 +43,27 @@ export interface GameCode {
 // 其 10-19 更新把 hustleup / froppilive 列入 ACTIVE（NEW）→ 与 Beebom 10-12 构成双源，收录。
 // 同一页面把 Thanksfor480k 列入 expired（单源），按「≥2 源 expired 才退役」维持 active 并标注分歧。
 // 另 100MIL 为该页新列，但目前只有 THG 一个源，暂不收录。
-export const CODES_LAST_CHECKED = "2026-10-21";
+// 2026-10-26: 100MIL 升级为双源（THG 10-19 + Beebom），收录；THANKSFOR480K 双源
+// expired（THG 10-19 + Beebom 撤下），退役。游戏 10-25 更新（Oct 17 后新一轮）。
+export const CODES_LAST_CHECKED = "2026-10-26";
 
 export const CODES: GameCode[] = [
   {
-    // 480K-likes milestone. 2026-10-01: 2-source — Beebom (Oct 1, NEW) +
-    // TryHardGuides (Sep 28, NEW). Supersedes THANKSFOR447K.
-    code: "THANKSFOR480K",
+    // 100M-visits milestone. 2026-10-26: 2-source — TryHardGuides (Oct 19, NEW)
+    // + Beebom. First seen single-source on THG 2026-10-21, held back then.
+    code: "100MIL",
     reward: "20,000 Cash",
     status: "active",
-    note: "Likes milestone — the richest working code. TryHardGuides (Oct 19) has moved it to expired, but Beebom (Oct 12) and PocketTactics still list it active and no second source confirms the expiry — if a redeem fails, this one is the likely reason.",
+    note: "Visits milestone — dropped with the Oct 25 update wave.",
+  },
+  {
+    // 480K-likes milestone. 2026-10-01: 2-source — Beebom (Oct 1, NEW) +
+    // TryHardGuides (Sep 28, NEW). Supersedes THANKSFOR447K.
+    // 2026-10-26: expired — THG (Oct 19) + Beebom both list it expired (2-source).
+    code: "THANKSFOR480K",
+    reward: "20,000 Cash",
+    status: "expired",
+    note: "Likes milestone — retired in the Oct 25 update wave.",
   },
   {
     // 447K-likes milestone (400K naming skipped, same as 415K). 2026-09-16:
