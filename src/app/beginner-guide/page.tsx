@@ -18,7 +18,10 @@ export default function BeginnerGuide() {
         <Marquee as="h1" color="sodium" className="text-3xl sm:text-5xl">
           Beginner Guide
         </Marquee>
-        <p className="mt-3 text-dim">{GAME.concept}</p>
+        <p className="mt-3 text-dim">
+          {GAME.concept} New here? Read{" "}
+          <Link href="/ghost-driver-roblox/">what Ghost Driver on Roblox is</Link> first.
+        </p>
       </header>
 
       <ScreenshotStrip
