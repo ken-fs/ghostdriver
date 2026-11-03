@@ -6,7 +6,7 @@ name: Refresh stats
 
 on:
   schedule:
-    - cron: "0 1 * * *" # once a day, 01:00 UTC = 09:00 Beijing (2026-11-03: was every 6h, cut to save Actions minutes)
+    - cron: "0 1 * * *" # once a day, 01:00 UTC = 09:00 Beijing (2026-11-03: was every 6h; daily is enough, the site has little data)
   workflow_dispatch: {} # manual "Run workflow" button
 
 concurrency:
