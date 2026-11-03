@@ -1,8 +1,8 @@
 name: Refresh stats
 
-# Deployment is handled by Cloudflare's Git integration (Workers Builds) on push.
-# This workflow only refreshes live Roblox traction and commits it — the commit's
-# push then triggers Cloudflare to rebuild & redeploy automatically.
+# Refreshes live Roblox traction and commits it. Deployment is deploy.yml (GitHub Actions,
+# 2026-11-03: Cloudflare's Git integration builds kept failing). A push made with GITHUB_TOKEN
+# does not trigger other workflows, so after committing we dispatch deploy.yml explicitly.
 
 on:
   schedule:
@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # allow committing refreshed stats.json
+      actions: write # allow dispatching deploy.yml after a stats commit
     steps:
       - uses: actions/checkout@v4
 
@@ -34,6 +35,8 @@ jobs:
         run: node scripts/refresh-stats.mjs
 
       - name: Commit refreshed stats
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -41,6 +44,7 @@ jobs:
             git add src/data/stats.json
             git commit -m "chore: refresh Ghost Driver stats"
             git push
+            gh workflow run deploy.yml --ref main
           else
             echo "No stats change."
           fi
