@@ -45,7 +45,9 @@ export interface GameCode {
 // 另 100MIL 为该页新列，但目前只有 THG 一个源，暂不收录。
 // 2026-10-26: 100MIL 升级为双源（THG 10-19 + Beebom），收录；THANKSFOR480K 双源
 // expired（THG 10-19 + Beebom 撤下），退役。游戏 10-25 更新（Oct 17 后新一轮）。
-export const CODES_LAST_CHECKED = "2026-10-26";
+// 2026-11-04: re-checked — TryHardGuides page still last modified Oct 19, no new
+// codes found; game updated Nov 3 (Halloween event). No changes to the list.
+export const CODES_LAST_CHECKED = "2026-11-04";
 
 export const CODES: GameCode[] = [
   {

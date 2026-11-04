@@ -15,7 +15,7 @@ export interface GameUpdate {
 }
 
 /** Date this log was last human-verified (drives the freshness stamp). */
-export const UPDATES_LAST_CHECKED = "2026-10-19";
+export const UPDATES_LAST_CHECKED = "2026-11-04";
 
 /**
  * Verified cadence: updates land on a near-weekly rhythm. Through August the
@@ -35,6 +35,16 @@ export const UPDATE_CADENCE = {
 export const NEXT_CODE_MILESTONE = 500_000;
 
 export const UPDATE_LOG: GameUpdate[] = [
+  {
+    date: "2026-11-03",
+    title: "Halloween event build",
+    items: [
+      "Game client updated Nov 3, 19:44 UTC (2:44 PM ET) and the listing is now named '[🎃HALLOWEEN EVENT] Ghost Driver' (Roblox games API).",
+      "Patch contents are not yet confirmed by 2+ sources, so we don't list cars or changes from it.",
+      "No new codes confirmed: TryHardGuides' Ghost Driver page was last modified Oct 19, so the active codes stay 100MIL, hustleup and froppilive.",
+    ],
+    source: "Roblox games API (read Nov 4) + TryHardGuides REST API (modified date)",
+  },
   {
     date: "2026-10-17",
     title: "[NEW LIMITED] build — Varnstrom Vildra limited hypercar + Helly Mamba permanent",
