@@ -47,7 +47,9 @@ export interface GameCode {
 // expired（THG 10-19 + Beebom 撤下），退役。游戏 10-25 更新（Oct 17 后新一轮）。
 // 2026-11-04: re-checked — TryHardGuides page still last modified Oct 19, no new
 // codes found; game updated Nov 3 (Halloween event). No changes to the list.
-export const CODES_LAST_CHECKED = "2026-11-04";
+// 2026-11-06: re-checked — Beebom (updated Nov 3) lists the same 3 active codes
+// (100MIL, hustleup, froppilive); THG still Oct 19. No new codes, no changes.
+export const CODES_LAST_CHECKED = "2026-11-06";
 
 export const CODES: GameCode[] = [
   {
