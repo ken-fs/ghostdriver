@@ -49,7 +49,9 @@ export interface GameCode {
 // codes found; game updated Nov 3 (Halloween event). No changes to the list.
 // 2026-11-06: re-checked — Beebom (updated Nov 3) lists the same 3 active codes
 // (100MIL, hustleup, froppilive); THG still Oct 19. No new codes, no changes.
-export const CODES_LAST_CHECKED = "2026-11-06";
+// 2026-11-07: re-checked — Beebom (Nov 3) and THG (Oct 19) unchanged, RadioTimes
+// stale (no hustleup/froppilive/100MIL). No new codes, no changes to the list.
+export const CODES_LAST_CHECKED = "2026-11-07";
 
 export const CODES: GameCode[] = [
   {
