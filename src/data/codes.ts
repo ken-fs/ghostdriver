@@ -51,7 +51,9 @@ export interface GameCode {
 // (100MIL, hustleup, froppilive); THG still Oct 19. No new codes, no changes.
 // 2026-11-07: re-checked — Beebom (Nov 3) and THG (Oct 19) unchanged, RadioTimes
 // stale (no hustleup/froppilive/100MIL). No new codes, no changes to the list.
-export const CODES_LAST_CHECKED = "2026-11-07";
+// 2026-11-09: re-checked — Beebom (Nov 3) and THG (Oct 19) unchanged, RadioTimes
+// stale. Game updated Nov 7 (Roblox API) but no new codes in any source.
+export const CODES_LAST_CHECKED = "2026-11-09";
 
 export const CODES: GameCode[] = [
   {
