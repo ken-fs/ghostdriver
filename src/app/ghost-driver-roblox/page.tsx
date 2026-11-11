@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { buildMeta } from "@/lib/meta";
 import { HudPanel, Marquee } from "@/components/ui";
-import { GAME } from "@/data/game";
+import { GAME, GAMEPLAY_LOOP } from "@/data/game";
 import { SITE } from "@/lib/site";
 
 export const metadata = buildMeta({
@@ -38,6 +38,23 @@ export default function GhostDriverRoblox() {
           It&apos;s a &ldquo;No Hesi&rdquo; style game. You skip the racing and just pass
           cars as close as you can without hitting them. Close passes build a combo, and
           long combos pay the most.
+        </p>
+      </HudPanel>
+
+      <HudPanel>
+        <Marquee color="hud" as="h2" className="text-xl">
+          How a session goes
+        </Marquee>
+        <ol className="mt-4 space-y-2 text-dim">
+          {GAMEPLAY_LOOP.map((step, i) => (
+            <li key={step}>
+              {i + 1}. {step}
+            </li>
+          ))}
+        </ol>
+        <p className="mt-3 text-dim">
+          The game is still in {GAME.status.toLowerCase()}, so things can change.
+          Check the <Link href="/updates/">updates page</Link> for the latest.
         </p>
       </HudPanel>
 
