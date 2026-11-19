@@ -30,6 +30,19 @@ export default function GhostDriverRoblox() {
       </header>
 
       <HudPanel>
+        <Marquee color="active" as="h2" className="text-xl">
+          Quick answer
+        </Marquee>
+        <p className="mt-4 text-dim">
+          Ghost Driver is a Roblox highway driving game made by {GAME.developer}. You earn
+          Cash by driving close to other cars, then spend it at the dealership. It&apos;s
+          in {GAME.status.toLowerCase()}, so expect bugs and changes. New here? Start
+          with the <Link href="/beginner-guide/">beginner guide</Link> and grab free Cash
+          from the <Link href="/codes/">codes page</Link>.
+        </p>
+      </HudPanel>
+
+      <HudPanel>
         <Marquee color="hud" as="h2" className="text-xl">
           How the game works
         </Marquee>
@@ -96,6 +109,8 @@ export default function GhostDriverRoblox() {
             <Link href="/tier-list/">tier list</Link> to pick what to buy
           </li>
           <li>• <Link href="/cash/">Cash guide</Link> to earn faster</li>
+          <li>• <Link href="/drift/">Drift guide</Link> and <Link href="/tuning/">tuning</Link> for better handling</li>
+          <li>• <Link href="/settings/">Graphics settings</Link> if the game runs slow</li>
         </ul>
         <p className="mt-4 text-xs text-dim">
           {SITE.name} is a fan site. It isn&apos;t affiliated with Roblox or {GAME.developer}.
