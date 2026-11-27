@@ -57,7 +57,9 @@ export interface GameCode {
 // active codes. Game updated Nov 17 (Roblox API); description has no codes.
 // 2026-11-22: re-checked — Beebom (Nov 3) and THG (modified Oct 19) unchanged, same 3
 // active codes. Roblox game updated Nov 21 (monitor); no new codes in any source.
-export const CODES_LAST_CHECKED = "2026-11-22";
+// 2026-11-27: re-checked — Beebom (Nov 3) and THG (modified Oct 19) unchanged, same 3
+// active codes; RadioTimes stale (Oct 1). Roblox game updated Nov 26; description has no codes.
+export const CODES_LAST_CHECKED = "2026-11-27";
 
 export const CODES: GameCode[] = [
   {
